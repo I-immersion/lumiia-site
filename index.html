@@ -53,6 +53,17 @@
     letter-spacing: 0.15em;
     color: var(--or);
     text-decoration: none;
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+  }
+
+  .nav-version {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.5rem;
+    letter-spacing: 0.15em;
+    color: var(--texte2);
+    font-weight: 400;
   }
 
   .nav-links {
@@ -1160,10 +1171,10 @@
 
   .footer-copy {
     font-family: 'Space Mono', monospace;
-    font-size: 0.55rem;
+    font-size: 0.6rem;
     letter-spacing: 0.1em;
     color: var(--texte2);
-    opacity: 0.5;
+    opacity: 0.8;
   }
 
   /* ─── RESPONSIVE ─── */
@@ -1202,7 +1213,7 @@
 
 <!-- ─── NAV ─── -->
 <nav>
-  <a href="#" class="nav-logo">LUMIIA</a>
+  <a href="#" class="nav-logo">LUMIIA<span class="nav-version">v2.0.0</span></a>
   <ul class="nav-links">
     <li><a href="#spectacle">Spectacle</a></li>
     <li><a href="#etage">1er étage</a></li>
