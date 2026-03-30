@@ -549,8 +549,16 @@
       </div>
 
       <div class="form-group">
-        <label>Image (URL ou upload)</label>
-        <input type="text" id="evtImgUrl" placeholder="https://... ou laisse vide pour uploader">
+        <label>Image de l'événement</label>
+        <div class="image-upload" id="imageUploadZone">
+          <input type="file" id="imageFileInput" accept="image/*" onchange="handleImageUpload(this)">
+          <div class="image-upload-text" id="imageUploadText">
+            📷 Cliquer pour choisir une image (JPEG, PNG, WebP · max 5Mo)
+          </div>
+          <img id="imagePreview" class="image-preview" src="" alt="">
+          <div id="imageUploadProgress" style="display:none;margin-top:0.5rem;font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--cyan);letter-spacing:0.1em;">Envoi en cours...</div>
+        </div>
+        <input type="hidden" id="evtImgUrl">
       </div>
 
       <div class="form-group">
@@ -604,10 +612,19 @@
     <div class="list-panel">
       <div class="list-header">
         <div class="list-title">Événements enregistrés</div>
-        <div class="list-filter">
-          <button class="filter-btn active" onclick="setFilter('all', this)">Tous</button>
-          <button class="filter-btn" onclick="setFilter('futur', this)">À venir</button>
-          <button class="filter-btn" onclick="setFilter('passe', this)">Passés</button>
+        <div style="display:flex;flex-direction:column;gap:0.5rem;align-items:flex-end;">
+          <div class="list-filter">
+            <button class="filter-btn active" onclick="setFilter('all', this)">Tous</button>
+            <button class="filter-btn" onclick="setFilter('futur', this)">À venir</button>
+            <button class="filter-btn" onclick="setFilter('passe', this)">Passés</button>
+          </div>
+          <div class="list-filter">
+            <button class="filter-btn" onclick="setDayFilter('', this)">Tous jours</button>
+            <button class="filter-btn" onclick="setDayFilter('4', this)">Jeu</button>
+            <button class="filter-btn" onclick="setDayFilter('5', this)">Ven</button>
+            <button class="filter-btn" onclick="setDayFilter('6', this)">Sam</button>
+            <button class="filter-btn" onclick="setDayFilter('0', this)">Dim</button>
+          </div>
         </div>
       </div>
       <div class="events-list" id="eventsList">
@@ -623,6 +640,8 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js';
 import { getDatabase, ref, push, set, remove, onValue, serverTimestamp }
   from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js';
+import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL }
+  from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-storage.js';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBPgjVFKrP80qX_hlfUFqL168XONfNIBA4",
@@ -636,7 +655,54 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
+const storage = getStorage(app);
 const agendaRef = ref(db, 'agenda/events');
+
+// ─── UPLOAD IMAGE ─────────────────────────────────────────────
+window.handleImageUpload = async function(input) {
+  const file = input.files[0];
+  if (!file) return;
+
+  if (file.size > 5 * 1024 * 1024) {
+    alert('Image trop lourde (max 5Mo)');
+    return;
+  }
+
+  // Prévisualisation locale immédiate
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const preview = document.getElementById('imagePreview');
+    preview.src = e.target.result;
+    preview.style.display = 'block';
+  };
+  reader.readAsDataURL(file);
+
+  // Upload Firebase Storage
+  const progress = document.getElementById('imageUploadProgress');
+  const uploadText = document.getElementById('imageUploadText');
+  progress.style.display = 'block';
+  uploadText.style.display = 'none';
+
+  const filename = 'agenda/' + Date.now() + '_' + file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+  const fileRef = storageRef(storage, filename);
+  const uploadTask = uploadBytesResumable(fileRef, file);
+
+  uploadTask.on('state_changed',
+    function(snapshot) {
+      const pct = Math.round(snapshot.bytesTransferred / snapshot.totalBytes * 100);
+      progress.textContent = 'Envoi en cours... ' + pct + '%';
+    },
+    function(error) {
+      progress.textContent = 'Erreur : ' + error.message;
+    },
+    async function() {
+      const url = await getDownloadURL(uploadTask.snapshot.ref);
+      document.getElementById('evtImgUrl').value = url;
+      progress.textContent = '✓ Image envoy\u00e9e';
+      setTimeout(() => { progress.style.display = 'none'; uploadText.style.display = 'block'; }, 2000);
+    }
+  );
+};
 
 // ─── MDP ───────────────────────────────────────────────────────
 const MDP = 'lumiia2026'; // ← changer ici
@@ -670,6 +736,7 @@ let evtType = 'gratuit';
 let evtResa = true;
 let evtRec = 'none';
 let currentFilter = 'all';
+let currentDayFilter = '';
 let allEvents = {};
 
 window.setType = function(t) {
@@ -815,10 +882,19 @@ window.editEvent = function(id) {
   document.querySelector('.form-panel').scrollTop = 0;
 };
 
-// ─── FILTRE ───────────────────────────────────────────────────
+// ─── FILTRES ──────────────────────────────────────────────────
 window.setFilter = function(f, btn) {
   currentFilter = f;
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.list-filter').forEach(group => {
+    if (group.contains(btn)) group.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  });
+  btn.classList.add('active');
+  renderList();
+};
+
+window.setDayFilter = function(d, btn) {
+  currentDayFilter = d;
+  btn.closest('.list-filter').querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   renderList();
 };
@@ -840,9 +916,18 @@ function renderList() {
 
   let entries = Object.entries(allEvents).map(([id, e]) => ({ id, ...e }));
 
-  // Filtre
+  // Filtre période
   if (currentFilter === 'futur') entries = entries.filter(e => e.date >= today);
   if (currentFilter === 'passe') entries = entries.filter(e => e.date < today);
+
+  // Filtre jour de semaine
+  if (currentDayFilter !== '') {
+    entries = entries.filter(e => {
+      if (!e.date) return false;
+      const d = new Date(e.date + 'T12:00:00');
+      return d.getDay() === parseInt(currentDayFilter);
+    });
+  }
 
   // Tri par date
   entries.sort((a, b) => a.date.localeCompare(b.date));
