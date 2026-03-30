@@ -114,10 +114,21 @@
   .hero-bg {
     position: absolute;
     inset: 0;
-    background:
-      radial-gradient(ellipse 80% 60% at 70% 40%, rgba(212,168,83,0.08) 0%, transparent 60%),
-      radial-gradient(ellipse 50% 40% at 20% 70%, rgba(123,79,166,0.12) 0%, transparent 55%),
-      radial-gradient(ellipse 40% 30% at 85% 80%, rgba(58,184,200,0.07) 0%, transparent 50%);
+    background-image: url('images/hero.jpg');
+    background-size: cover;
+    background-position: center 30%;
+    filter: brightness(0.45);
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(10,10,10,0.95) 0%,
+      rgba(10,10,10,0.4) 50%,
+      rgba(10,10,10,0.1) 100%
+    );
   }
 
   .hero-noise {
@@ -672,6 +683,47 @@
     padding: 0.35rem 0.8rem;
   }
 
+  /* Photo grid bar */
+  .bar-photos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 280px 180px;
+    gap: 0.5rem;
+    margin-top: 3rem;
+  }
+
+  .bar-photo {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .bar-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+    display: block;
+  }
+
+  .bar-photo:hover img { transform: scale(1.04); }
+
+  .bar-photo.large {
+    grid-row: span 2;
+  }
+
+  .bar-photo-label {
+    position: absolute;
+    bottom: 0.8rem;
+    left: 0.8rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    background: rgba(0,0,0,0.5);
+    padding: 0.3rem 0.6rem;
+  }
+
   /* Agenda */
   .agenda { display: flex; flex-direction: column; gap: 0; }
 
@@ -735,11 +787,30 @@
 
   .expe-item {
     background: var(--noir2);
-    padding: 2rem 1.5rem;
+    padding: 0;
     transition: background 0.2s;
+    overflow: hidden;
   }
 
   .expe-item:hover { background: var(--gris2); }
+
+  .expe-item-photo {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.85);
+    transition: transform 0.5s ease, filter 0.3s;
+  }
+
+  .expe-item:hover .expe-item-photo {
+    transform: scale(1.03);
+    filter: brightness(1);
+  }
+
+  .expe-item-content {
+    padding: 1.5rem;
+  }
 
   .expe-nom {
     font-family: 'Bebas Neue', sans-serif;
@@ -1213,7 +1284,7 @@
 
 <!-- ─── NAV ─── -->
 <nav>
-  <a href="#" class="nav-logo">LUMIIA<span class="nav-version">v2.2.0</span></a>
+  <a href="#" class="nav-logo">LUMIIA<span class="nav-version">v2.3.0</span></a>
   <ul class="nav-links">
     <li><a href="#spectacle">Spectacle</a></li>
     <li><a href="#etage">1er étage</a></li>
@@ -1228,6 +1299,7 @@
 <!-- ─── HERO ─── -->
 <section class="hero" id="top">
   <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
   <div class="hero-noise"></div>
 
   <div class="hero-tag">Aouste-sur-Sye · Drôme</div>
@@ -1538,8 +1610,26 @@
     </div>
   </div>
 
+  <!-- Grille photos bar -->
+  <div class="bar-photos">
+    <div class="bar-photo large">
+      <img src="images/bar-ambiance.jpg" alt="Bar immersif LUMIIA">
+      <span class="bar-photo-label">Bar immersif</span>
+    </div>
+    <div class="bar-photo">
+      <img src="images/bar-dj.jpg" alt="DJ au bar LUMIIA">
+      <span class="bar-photo-label">Soirée électro</span>
+    </div>
+    <div class="bar-photo">
+      <img src="images/bar-cochon.jpg" alt="Détail bar LUMIIA">
+      <span class="bar-photo-label">Cabinet de curiosités</span>
+    </div>
+  </div>
+
   <div class="expe-grid">
     <div class="expe-item">
+      <img src="images/defoule-room.jpg" alt="Défoule Room" class="expe-item-photo">
+      <div class="expe-item-content">
       <div class="expe-nom">Défoule Room</div>
       <div class="expe-detail">Zombies, lasers, boutons, moutons et champignons de Mario. 30 minutes intensives dans 70 m² d'écrans et de jeux interactifs fabriqués ici.</div>
       <div class="expe-specs">Studio 1 · 2 à 19 personnes · Dès 4 ans</div>
@@ -1547,8 +1637,11 @@
         <div class="tarif-chiffre">9€</div>
         <div class="tarif-unit">/ pers · 30 min</div>
       </div>
+      </div>
     </div>
     <div class="expe-item">
+      <img src="images/bar-ambiance.jpg" alt="Enigmatic Game" class="expe-item-photo">
+      <div class="expe-item-content">
       <div class="expe-nom">Enigmatic Game</div>
       <div class="expe-detail">Chasse au trésor mêlant escape game et enquête dans le décor du bar. Indices cachés partout. Tablette fournie, -12 ans offerts.</div>
       <div class="expe-specs">Bar · 2 à 6 pers / tablette · Tout public</div>
@@ -1556,8 +1649,11 @@
         <div class="tarif-chiffre">13€</div>
         <div class="tarif-unit">/ pers · -12 ans offert</div>
       </div>
+      </div>
     </div>
     <div class="expe-item">
+      <img src="images/bar-dj.jpg" alt="Hollywood Super Green" class="expe-item-photo">
+      <div class="expe-item-content">
       <div class="expe-nom">Hollywood Super Green</div>
       <div class="expe-detail">Caméras, fond vert, costumes, réalisateur en régie. Vous repartez avec une vidéo de la session. Une expérience unique dans la région.</div>
       <div class="expe-specs">Studio 1 · 10 à 19 personnes · Animé</div>
@@ -1565,14 +1661,18 @@
         <div class="tarif-chiffre">26€</div>
         <div class="tarif-unit">/ adulte · 45 min</div>
       </div>
+      </div>
     </div>
     <div class="expe-item">
+      <img src="images/karaoke-neon.jpg" alt="Karaoké Privé" class="expe-item-photo">
+      <div class="expe-item-content">
       <div class="expe-nom">Karaoké Privé</div>
       <div class="expe-detail">Studio privatisé pour votre groupe. 3 à 9 personnes dans un espace conçu pour chanter sans se retenir.</div>
       <div class="expe-specs">Studio 3 · 3 à 9 personnes · Tout public</div>
       <div class="expe-tarif">
         <div class="tarif-chiffre">15€</div>
         <div class="tarif-unit">/ pers · 1h</div>
+      </div>
       </div>
     </div>
   </div>
@@ -2059,7 +2159,7 @@
     <li><a href="https://www.lumiiastudios.fr" target="_blank">Studios Pro</a></li>
     <li><a href="#infos">Contact</a></li>
   </ul>
-  <div class="footer-copy">© 2026 I-IMMERSION SAS · lumiia.fr · v2.2.0</div>
+  <div class="footer-copy">© 2026 I-IMMERSION SAS · lumiia.fr · v2.3.0</div>
 </footer>
 
 <script>
