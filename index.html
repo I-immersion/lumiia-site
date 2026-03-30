@@ -53,17 +53,14 @@
     letter-spacing: 0.15em;
     color: var(--or);
     text-decoration: none;
-    display: flex;
-    align-items: baseline;
-    gap: 0.6rem;
   }
 
   .nav-version {
     font-family: 'Space Mono', monospace;
-    font-size: 0.5rem;
-    letter-spacing: 0.15em;
-    color: var(--texte2);
-    font-weight: 400;
+    font-size: 0.65rem;
+    color: rgb(136, 136, 144);
+    letter-spacing: 0.05em;
+    align-self: center;
   }
 
   .nav-links {
@@ -276,6 +273,49 @@
     height: 1px;
     background: linear-gradient(to right, transparent, rgba(212,168,83,0.2), transparent);
     margin: 0 3rem;
+  }
+
+  /* ─── BANDE PHOTOS ─── */
+  .photo-band {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    height: 380px;
+    gap: 3px;
+  }
+
+  .photo-band-item {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .photo-band-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+    filter: brightness(0.75);
+  }
+
+  .photo-band-item:hover img {
+    transform: scale(1.05);
+    filter: brightness(0.9);
+  }
+
+  .photo-band-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    padding: 1.5rem;
+    background: linear-gradient(to top, rgba(10,10,10,0.7) 0%, transparent 50%);
+  }
+
+  .photo-band-overlay span {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(240,236,227,0.8);
   }
 
   /* ─── CONCEPT ─── */
@@ -785,31 +825,44 @@
     margin-top: 3rem;
   }
 
-  .expe-item {
-    background: var(--noir2);
-    padding: 0;
-    transition: background 0.2s;
-    overflow: hidden;
+  /* Expériences RDC */
+  .expe-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3px;
+    margin-top: 3rem;
   }
 
-  .expe-item:hover { background: var(--gris2); }
+  .expe-item {
+    position: relative;
+    overflow: hidden;
+    height: 380px;
+    cursor: default;
+  }
 
   .expe-item-photo {
+    position: absolute;
+    inset: 0;
     width: 100%;
-    height: 200px;
+    height: 100%;
     object-fit: cover;
-    display: block;
-    filter: brightness(0.85);
-    transition: transform 0.5s ease, filter 0.3s;
+    filter: brightness(0.5);
+    transition: transform 0.6s ease, filter 0.3s;
   }
 
   .expe-item:hover .expe-item-photo {
-    transform: scale(1.03);
-    filter: brightness(1);
+    transform: scale(1.04);
+    filter: brightness(0.65);
   }
 
   .expe-item-content {
-    padding: 1.5rem;
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.8rem 1.5rem;
+    background: linear-gradient(to top, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0.2) 60%, transparent 100%);
   }
 
   .expe-nom {
@@ -1070,12 +1123,23 @@
     overflow: hidden;
   }
 
+  .atelier-photo-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('images/bar-dj.jpg');
+    background-size: cover;
+    background-position: center right;
+    filter: brightness(0.15);
+    pointer-events: none;
+  }
+
   .atelier::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse 60% 80% at 90% 50%, rgba(212,168,83,0.05) 0%, transparent 60%);
+    background: linear-gradient(to right, rgba(17,17,17,0.98) 45%, rgba(17,17,17,0.7) 100%);
     pointer-events: none;
+    z-index: 1;
   }
 
   .atelier-grid {
@@ -1083,6 +1147,8 @@
     grid-template-columns: 1fr 1.2fr;
     gap: 6rem;
     align-items: start;
+    position: relative;
+    z-index: 2;
   }
 
   .atelier-text p {
@@ -1166,7 +1232,26 @@
   }
 
   /* ─── INFOS PRATIQUES ─── */
-  .infos { background: var(--noir); }
+  .infos {
+    background: var(--noir);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .infos-photo-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('images/terrasse.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.12);
+    pointer-events: none;
+  }
+
+  .infos > *:not(.infos-photo-bg) {
+    position: relative;
+    z-index: 1;
+  }
 
   .infos-grid {
     display: grid;
@@ -1284,7 +1369,7 @@
 
 <!-- ─── NAV ─── -->
 <nav>
-  <a href="#" class="nav-logo">LUMIIA<span class="nav-version">v2.3.0</span></a>
+  <a href="#" class="nav-logo">LUMIIA</a>
   <ul class="nav-links">
     <li><a href="#spectacle">Spectacle</a></li>
     <li><a href="#etage">1er étage</a></li>
@@ -1293,6 +1378,7 @@
     <li><a href="#atelier">L'atelier</a></li>
     <li><a href="#infos">Infos</a></li>
   </ul>
+  <span class="nav-version">v2.4.0</span>
   <a href="#packs" class="nav-cta">Réserver</a>
 </nav>
 
@@ -1381,6 +1467,30 @@
     </div>
   </div>
 </section>
+
+<div class="divider"></div>
+
+<!-- ─── BANDE PHOTOS ─── -->
+<div class="photo-band">
+  <div class="photo-band-item">
+    <img src="images/bar-ambiance.jpg" alt="Bar immersif LUMIIA">
+    <div class="photo-band-overlay">
+      <span>Bar immersif</span>
+    </div>
+  </div>
+  <div class="photo-band-item">
+    <img src="images/defoule-room.jpg" alt="Défoule Room LUMIIA">
+    <div class="photo-band-overlay">
+      <span>Défoule Room</span>
+    </div>
+  </div>
+  <div class="photo-band-item">
+    <img src="images/karaoke-neon.jpg" alt="Karaoké LUMIIA">
+    <div class="photo-band-overlay">
+      <span>Karaoké Privé</span>
+    </div>
+  </div>
+</div>
 
 <div class="divider"></div>
 
@@ -2028,6 +2138,7 @@
 
 <!-- ─── ATELIER ─── -->
 <section class="atelier" id="atelier">
+  <div class="atelier-photo-bg"></div>
   <div class="atelier-grid">
     <div class="atelier-text">
       <div class="section-label">L'envers du décor</div>
@@ -2101,6 +2212,7 @@
 
 <!-- ─── INFOS PRATIQUES ─── -->
 <section class="infos" id="infos">
+  <div class="infos-photo-bg"></div>
   <div class="section-label">Venir nous voir</div>
   <h2>Infos pratiques.</h2>
 
@@ -2159,7 +2271,7 @@
     <li><a href="https://www.lumiiastudios.fr" target="_blank">Studios Pro</a></li>
     <li><a href="#infos">Contact</a></li>
   </ul>
-  <div class="footer-copy">© 2026 I-IMMERSION SAS · lumiia.fr · v2.3.0</div>
+  <div class="footer-copy">© 2026 I-IMMERSION SAS · lumiia.fr · v2.4.0</div>
 </footer>
 
 <script>
