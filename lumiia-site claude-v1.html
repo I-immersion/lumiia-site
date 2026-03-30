@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LUMIIA — Bar, Expériences & Studios · Aouste-sur-Sye</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono:wght@400;700&display=swap');
+
+  :root {
+    --noir: #0a0a0a;
+    --noir2: #111111;
+    --blanc: #f0ece3;
+    --or: #d4a853;
+    --or2: #f0c060;
+    --rose: #e8455a;
+    --violet: #7b4fa6;
+    --cyan: #3ab8c8;
+    --gris: #2a2a2a;
+    --gris2: #1a1a1a;
+    --texte: #c8c0b0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--noir);
+    color: var(--blanc);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 3rem;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.98), transparent);
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0.15em;
+    color: var(--or);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--texte);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--or); }
+
+  .nav-cta {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: var(--or);
+    color: var(--noir);
+    padding: 0.6rem 1.4rem;
+    text-decoration: none;
+    font-weight: 700;
+    transition: background 0.2s;
+  }
+
+  .nav-cta:hover { background: var(--or2); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 6rem 3rem 5rem;
+    position: relative;
+    overflow: hidden;
+    background: var(--noir);
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 40%, rgba(212,168,83,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 20% 70%, rgba(123,79,166,0.12) 0%, transparent 55%),
+      radial-gradient(ellipse 40% 30% at 85% 80%, rgba(58,184,200,0.07) 0%, transparent 50%);
+  }
+
+  .hero-noise {
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px;
+  }
+
+  .hero-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--or);
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 2rem;
+    height: 1px;
+    background: var(--or);
+    vertical-align: middle;
+    margin-right: 0.8rem;
+  }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 10vw, 9rem);
+    line-height: 0.92;
+    letter-spacing: 0.02em;
+    position: relative;
+    max-width: 900px;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--or);
+  }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--texte);
+    max-width: 520px;
+    margin-top: 2rem;
+    line-height: 1.7;
+    position: relative;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    position: relative;
+  }
+
+  .btn-primary {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: var(--or);
+    color: var(--noir);
+    padding: 0.9rem 2rem;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { background: var(--or2); transform: translateY(-2px); }
+
+  .btn-ghost {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: 1px solid rgba(240,236,227,0.2);
+    color: var(--blanc);
+    padding: 0.9rem 2rem;
+    text-decoration: none;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+
+  .btn-ghost:hover { border-color: var(--or); color: var(--or); }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 2rem;
+    right: 3rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--texte);
+    writing-mode: vertical-rl;
+    opacity: 0.5;
+  }
+
+  /* ─── SECTION GÉNÉRIQUE ─── */
+  section {
+    padding: 6rem 3rem;
+  }
+
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--or);
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    max-width: 3rem;
+    height: 1px;
+    background: var(--or);
+    opacity: 0.4;
+  }
+
+  h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    letter-spacing: 0.03em;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .intro-text {
+    font-size: 1.05rem;
+    color: var(--texte);
+    max-width: 600px;
+    line-height: 1.75;
+  }
+
+  /* ─── OCCASIONS (3 cartes) ─── */
+  .occasions {
+    background: var(--noir2);
+  }
+
+  .occasions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-top: 3.5rem;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .occasion-card {
+    padding: 2.5rem;
+    border-right: 1px solid rgba(255,255,255,0.06);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .occasion-card:last-child { border-right: none; }
+
+  .occasion-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .occasion-card:nth-child(1)::before { background: var(--or); }
+  .occasion-card:nth-child(2)::before { background: var(--rose); }
+  .occasion-card:nth-child(3)::before { background: var(--cyan); }
+
+  .occasion-card:hover::before { transform: scaleX(1); }
+  .occasion-card:hover { background: rgba(255,255,255,0.02); }
+
+  .occasion-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--texte);
+    opacity: 0.4;
+    margin-bottom: 1.2rem;
+  }
+
+  .occasion-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .occasion-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.8rem;
+  }
+
+  .occasion-card p {
+    font-size: 0.9rem;
+    color: var(--texte);
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+  }
+
+  .occasion-link {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: gap 0.2s;
+  }
+
+  .occasion-card:nth-child(1) .occasion-link { color: var(--or); }
+  .occasion-card:nth-child(2) .occasion-link { color: var(--rose); }
+  .occasion-card:nth-child(3) .occasion-link { color: var(--cyan); }
+
+  .occasion-link:hover { gap: 1rem; }
+
+  /* ─── PACKS ─── */
+  .packs { background: var(--noir); }
+
+  .packs-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3.5rem;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .packs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.06);
+  }
+
+  .pack-card {
+    background: var(--noir2);
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+
+  .pack-card:hover { background: var(--gris2); }
+
+  .pack-badge {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+  }
+
+  .badge-or { background: var(--or); color: var(--noir); }
+  .badge-rose { background: var(--rose); color: white; }
+  .badge-cyan { background: var(--cyan); color: var(--noir); }
+  .badge-violet { background: var(--violet); color: white; }
+  .badge-gris { background: var(--gris); color: var(--texte); border: 1px solid rgba(255,255,255,0.1); }
+
+  .pack-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.9rem;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.5rem;
+    line-height: 1;
+  }
+
+  .pack-occasion {
+    font-size: 0.8rem;
+    color: var(--texte);
+    margin-bottom: 1.2rem;
+    font-style: italic;
+  }
+
+  .pack-desc {
+    font-size: 0.88rem;
+    color: var(--texte);
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+  }
+
+  .pack-inclus {
+    list-style: none;
+    margin-bottom: 1.8rem;
+  }
+
+  .pack-inclus li {
+    font-size: 0.82rem;
+    color: var(--texte);
+    padding: 0.35rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .pack-inclus li::before {
+    content: '→';
+    color: var(--or);
+    flex-shrink: 0;
+    font-size: 0.75rem;
+    margin-top: 0.1rem;
+  }
+
+  .pack-prix {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .prix-montant {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    color: var(--or);
+  }
+
+  .prix-base {
+    font-size: 0.78rem;
+    color: var(--texte);
+  }
+
+  .btn-reserver {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: var(--or);
+    color: var(--noir);
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    font-weight: 700;
+    display: inline-block;
+    transition: all 0.2s;
+    width: 100%;
+    text-align: center;
+  }
+
+  .btn-reserver:hover { background: var(--or2); transform: translateY(-1px); }
+
+  /* ─── À LA CARTE ─── */
+  .acarte { background: var(--gris2); }
+
+  .acarte-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.06);
+    margin-top: 3rem;
+  }
+
+  .acarte-item {
+    background: var(--noir2);
+    padding: 2rem 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    align-items: start;
+    transition: background 0.2s;
+  }
+
+  .acarte-item:hover { background: var(--gris2); }
+
+  .acarte-nom {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.3rem;
+  }
+
+  .acarte-detail {
+    font-size: 0.82rem;
+    color: var(--texte);
+    line-height: 1.6;
+  }
+
+  .acarte-specs {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--texte);
+    opacity: 0.6;
+    margin-top: 0.4rem;
+  }
+
+  .acarte-tarif {
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .tarif-chiffre {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: var(--or);
+    line-height: 1;
+  }
+
+  .tarif-unit {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--texte);
+    opacity: 0.6;
+  }
+
+  /* ─── LE BAR & AGENDA ─── */
+  .bar-section { background: var(--noir); }
+
+  .bar-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-top: 3rem;
+    align-items: start;
+  }
+
+  .bar-text p {
+    font-size: 1rem;
+    color: var(--texte);
+    line-height: 1.75;
+    margin-bottom: 1.2rem;
+  }
+
+  .bar-highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.4rem 0.8rem;
+    border: 1px solid rgba(212,168,83,0.3);
+    color: var(--or);
+  }
+
+  .agenda {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .agenda-jour {
+    display: grid;
+    grid-template-columns: 5rem 1fr;
+    background: var(--gris2);
+    overflow: hidden;
+    transition: background 0.2s;
+  }
+
+  .agenda-jour:hover { background: var(--gris); }
+
+  .jour-label {
+    background: var(--gris);
+    padding: 1.2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+  }
+
+  .jour-nom {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    color: var(--or);
+  }
+
+  .jour-heure {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.55rem;
+    color: var(--texte);
+    opacity: 0.5;
+  }
+
+  .jour-content {
+    padding: 1.2rem 1.5rem;
+  }
+
+  .jour-titre {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.3rem;
+  }
+
+  .jour-desc {
+    font-size: 0.8rem;
+    color: var(--texte);
+    line-height: 1.5;
+  }
+
+  /* ─── STUDIOS ─── */
+  .studios-section { background: var(--noir2); }
+
+  .studios-intro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-top: 3rem;
+    align-items: start;
+  }
+
+  .studios-text p {
+    font-size: 1rem;
+    color: var(--texte);
+    line-height: 1.75;
+    margin-bottom: 1rem;
+  }
+
+  .studio-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .studio-card {
+    background: var(--noir);
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.2s;
+  }
+
+  .studio-card:hover { background: var(--gris2); }
+
+  .studio-info h4 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.3rem;
+  }
+
+  .studio-info p {
+    font-size: 0.8rem;
+    color: var(--texte);
+  }
+
+  .studio-surface {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: rgba(212,168,83,0.3);
+    letter-spacing: 0.02em;
+  }
+
+  /* ─── INFOS PRATIQUES ─── */
+  .infos { background: var(--gris2); }
+
+  .infos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    margin-top: 3rem;
+  }
+
+  .info-bloc h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.05em;
+    color: var(--or);
+    margin-bottom: 1rem;
+  }
+
+  .info-bloc p, .info-bloc address {
+    font-size: 0.88rem;
+    color: var(--texte);
+    line-height: 1.75;
+    font-style: normal;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--noir);
+    padding: 3rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0.15em;
+    color: var(--or);
+  }
+
+  .footer-baseline {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--texte);
+    opacity: 0.4;
+    margin-top: 0.3rem;
+  }
+
+  footer p {
+    font-size: 0.78rem;
+    color: var(--texte);
+    opacity: 0.35;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+  }
+
+  /* ─── DIVIDER ─── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(212,168,83,0.2), transparent);
+    margin: 0 3rem;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .occasions-grid { grid-template-columns: 1fr; }
+    .packs-grid { grid-template-columns: 1fr; }
+    .acarte-grid { grid-template-columns: 1fr; }
+    .bar-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .studios-intro { grid-template-columns: 1fr; gap: 2rem; }
+    .infos-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <a href="#" class="nav-logo">LUMIIA</a>
+  <ul class="nav-links">
+    <li><a href="#occasions">Occasions</a></li>
+    <li><a href="#packs">Packs</a></li>
+    <li><a href="#acarte">À la carte</a></li>
+    <li><a href="#bar">Le bar</a></li>
+    <li><a href="#studios">Studios</a></li>
+    <li><a href="#infos">Infos</a></li>
+  </ul>
+  <a href="#packs" class="nav-cta">Réserver</a>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-noise"></div>
+  <div class="hero-tag">Bar · Expériences · Studios — Aouste-sur-Sye, Drôme</div>
+  <h1>Vivez des<br>choses qu'on <em>n'oublie</em><br>pas.</h1>
+  <p class="hero-sub">
+    LUMIIA, c'est un endroit hors du commun — un bar immersif, des expériences interactives et des studios professionnels. Un seul lieu pour des moments qui restent.
+  </p>
+  <div class="hero-actions">
+    <a href="#occasions" class="btn-primary">Trouver mon occasion</a>
+    <a href="#acarte" class="btn-ghost">Découvrir les activités</a>
+  </div>
+  <span class="hero-scroll">Défiler</span>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─── OCCASIONS ─── -->
+<section class="occasions" id="occasions">
+  <div class="section-label">Pour qui, pour quoi</div>
+  <h2>Quelle est votre occasion ?</h2>
+  <p class="intro-text">Chaque moment mérite une expérience à sa hauteur. LUMIIA a pensé des formules pour les trois grandes occasions qui font vraiment la différence.</p>
+
+  <div class="occasions-grid">
+    <div class="occasion-card">
+      <div class="occasion-num">01</div>
+      <div class="occasion-icon">🎂</div>
+      <h3>Anniversaire & fête</h3>
+      <p>Vous cherchez autre chose qu'un resto et une bouteille. Vous voulez que les gens en parlent encore dans six mois. LUMIIA, c'est fait pour ça.</p>
+      <a href="#pack-anniversaire" class="occasion-link">Voir les packs →</a>
+    </div>
+    <div class="occasion-card">
+      <div class="occasion-num">02</div>
+      <div class="occasion-icon">🥂</div>
+      <h3>EVG · EVJF · Célébrations</h3>
+      <p>Enterrement de vie de célibataire, départ en retraite, anniversaire de mariage — une soirée privatisée dont tout le monde ressort avec des souvenirs.</p>
+      <a href="#pack-evg" class="occasion-link">Voir les packs →</a>
+    </div>
+    <div class="occasion-card">
+      <div class="occasion-num">03</div>
+      <div class="occasion-icon">💼</div>
+      <h3>Team Building & séminaire</h3>
+      <p>Un team building qui ne ressemble pas à tous les autres. Expériences collectives, studios, bar privatisable — une journée entière possible.</p>
+      <a href="#pack-tb" class="occasion-link">Voir les packs →</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─── PACKS ─── -->
+<section class="packs" id="packs">
+  <div class="packs-header">
+    <div>
+      <div class="section-label">Formules clé en main</div>
+      <h2>Les packs LUMIIA</h2>
+      <p class="intro-text">Tout est préparé. Vous n'avez qu'à venir.</p>
+    </div>
+  </div>
+
+  <div class="packs-grid">
+
+    <!-- Pack Anniversaire -->
+    <div class="pack-card" id="pack-anniversaire">
+      <span class="pack-badge badge-or">Anniversaire</span>
+      <h3>Pack Fête</h3>
+      <div class="pack-occasion">Pour 8 à 20 personnes</div>
+      <p class="pack-desc">Le bar privatisé pour votre groupe + une session Défoule Room + un verre d'accueil. La fête dont tout le monde reparlera.</p>
+      <ul class="pack-inclus">
+        <li>2h de bar privatisé (boissons en option)</li>
+        <li>1 session Défoule Room (30 min, groupe entier)</li>
+        <li>Verre d'accueil offert / personne</li>
+        <li>Playlist personnalisée</li>
+        <li>Coordination par l'équipe LUMIIA</li>
+      </ul>
+      <div class="pack-prix">
+        <span class="prix-montant">Sur devis</span>
+      </div>
+      <a href="#" class="btn-reserver">Demander ce pack</a>
+    </div>
+
+    <!-- Pack EVG -->
+    <div class="pack-card" id="pack-evg">
+      <span class="pack-badge badge-rose">EVG · EVJF</span>
+      <h3>Pack Nuit Blanche</h3>
+      <div class="pack-occasion">Pour 6 à 15 personnes</div>
+      <p class="pack-desc">Une soirée complète : défi collectif, ambiance bar, et si vous êtes joueurs, tentez Hollywood Super Green pour finir la nuit dans la peau d'une star.</p>
+      <ul class="pack-inclus">
+        <li>1 session Enigmatic Game (chasse au trésor)</li>
+        <li>1 session Défoule Room</li>
+        <li>Bar privatisé 2h avec cocktails</li>
+        <li>Option : Hollywood Super Green (sur devis)</li>
+      </ul>
+      <div class="pack-prix">
+        <span class="prix-montant">Sur devis</span>
+      </div>
+      <a href="#" class="btn-reserver">Demander ce pack</a>
+    </div>
+
+    <!-- Pack Team Building -->
+    <div class="pack-card" id="pack-tb">
+      <span class="pack-badge badge-cyan">Team Building</span>
+      <h3>Pack Équipe</h3>
+      <div class="pack-occasion">Pour 10 à 50 personnes</div>
+      <p class="pack-desc">Une demi-journée ou une journée complète construite autour de vos équipes. Activités collectives, espace de travail si besoin, repas possible.</p>
+      <ul class="pack-inclus">
+        <li>Hollywood Super Green (session animée)</li>
+        <li>Défoule Room en compétition d'équipes</li>
+        <li>Bar privatisé pour le débrief</li>
+        <li>Option : Enigmatic Game en mode équipes</li>
+        <li>Devis sur mesure selon effectif</li>
+      </ul>
+      <div class="pack-prix">
+        <span class="prix-montant">Sur devis</span>
+      </div>
+      <a href="#" class="btn-reserver">Demander ce pack</a>
+    </div>
+
+    <!-- Pack Karaoké privatisé -->
+    <div class="pack-card">
+      <span class="pack-badge badge-violet">Privatisation</span>
+      <h3>Pack Karaoké Privé</h3>
+      <div class="pack-occasion">Pour 3 à 9 personnes</div>
+      <p class="pack-desc">La salle rien que pour vous. Deux heures à chanter sans se soucier du reste — dans un espace acoustique pensé pour ça.</p>
+      <ul class="pack-inclus">
+        <li>Studio 3 privatisé (14 m²)</li>
+        <li>2h de session karaoké</li>
+        <li>Équipement professionnel inclus</li>
+        <li>Option : boissons livrées en salle</li>
+      </ul>
+      <div class="pack-prix">
+        <span class="prix-montant">26€</span>
+        <span class="prix-base">/ pers · 2h</span>
+      </div>
+      <a href="#" class="btn-reserver">Réserver</a>
+    </div>
+
+    <!-- Pack Soirée Bar -->
+    <div class="pack-card">
+      <span class="pack-badge badge-or">Bar</span>
+      <h3>Pack Afterwork</h3>
+      <div class="pack-occasion">Pour 15 à 77 personnes</div>
+      <p class="pack-desc">Le bar entier privatisé pour votre entreprise ou votre association. Idéal pour clôturer une journée de travail dans un cadre inoubliable.</p>
+      <ul class="pack-inclus">
+        <li>Bar LUMIIA privatisé en soirée</li>
+        <li>Cocktails & boissons sur formule</li>
+        <li>Finger food disponible</li>
+        <li>Projection possible sur grand écran</li>
+        <li>Animation DJ en option</li>
+      </ul>
+      <div class="pack-prix">
+        <span class="prix-montant">Sur devis</span>
+      </div>
+      <a href="#" class="btn-reserver">Demander ce pack</a>
+    </div>
+
+    <!-- Pack Hollywood -->
+    <div class="pack-card">
+      <span class="pack-badge badge-gris">Expérience Studio</span>
+      <h3>Hollywood Super Green</h3>
+      <div class="pack-occasion">Pour 10 à 19 personnes · Animé</div>
+      <p class="pack-desc">Caméras, fond vert, costumes, réalisateur en régie. Vous repartez avec une vidéo de la session. Une expérience qui n'existe nulle part ailleurs dans la région.</p>
+      <ul class="pack-inclus">
+        <li>45 min d'expérience animée</li>
+        <li>Fond vert + décors numériques</li>
+        <li>Un animateur + technicien en régie</li>
+        <li>Vidéo de la session offerte</li>
+      </ul>
+      <div class="pack-prix">
+        <span class="prix-montant">26€</span>
+        <span class="prix-base">/ pers adulte</span>
+      </div>
+      <a href="#" class="btn-reserver">Réserver</a>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─── À LA CARTE ─── -->
+<section class="acarte" id="acarte">
+  <div class="section-label">Sans réservation de pack</div>
+  <h2>Activités à la carte</h2>
+  <p class="intro-text">Vous venez sans occasion précise, juste pour découvrir ? Voici ce qui vous attend selon les disponibilités.</p>
+
+  <div class="acarte-grid">
+
+    <div class="acarte-item">
+      <div>
+        <div class="acarte-nom">Défoule Room</div>
+        <div class="acarte-detail">Zombies, lasers, boutons, moutons et champignons de Mario. 30 minutes intensives dans 70 m² d'écrans et de jeux interactifs.</div>
+        <div class="acarte-specs">Studio 1 · 2 à 19 personnes · Dès 4 ans</div>
+      </div>
+      <div class="acarte-tarif">
+        <div class="tarif-chiffre">9€</div>
+        <div class="tarif-unit">/ pers · 30 min</div>
+      </div>
+    </div>
+
+    <div class="acarte-item">
+      <div>
+        <div class="acarte-nom">Enigmatic Game</div>
+        <div class="acarte-detail">Une chasse au trésor mêlant escape game et enquête. Les indices sont cachés dans le décor du bar. Tablette fournie.</div>
+        <div class="acarte-specs">Bar LUMIIA · 2 à 6 personnes / tablette · Tout public</div>
+      </div>
+      <div class="acarte-tarif">
+        <div class="tarif-chiffre">13€</div>
+        <div class="tarif-unit">/ pers · -12 ans offert</div>
+      </div>
+    </div>
+
+    <div class="acarte-item">
+      <div>
+        <div class="acarte-nom">Karaoké Privé</div>
+        <div class="acarte-detail">Studio privatisé pour votre groupe. 3 à 9 personnes dans un espace conçu pour chanter sans se retenir.</div>
+        <div class="acarte-specs">Studio 3 · 3 à 9 personnes · Tout public</div>
+      </div>
+      <div class="acarte-tarif">
+        <div class="tarif-chiffre">15€</div>
+        <div class="tarif-unit">/ pers · 1h</div>
+      </div>
+    </div>
+
+    <div class="acarte-item">
+      <div>
+        <div class="acarte-nom">Hollywood Super Green</div>
+        <div class="acarte-detail">Casting cinéma sur fond vert avec animateur. Décors numériques, costumes, vidéo offerte. Nécessite un groupe de 10 minimum.</div>
+        <div class="acarte-specs">Studio 1 · 10 à 19 personnes · Animé</div>
+      </div>
+      <div class="acarte-tarif">
+        <div class="tarif-chiffre">26€</div>
+        <div class="tarif-unit">/ adulte · 45 min</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─── LE BAR & AGENDA ─── -->
+<section class="bar-section" id="bar">
+  <div class="bar-grid">
+    <div class="bar-text">
+      <div class="section-label">Le cœur de LUMIIA</div>
+      <h2>Le Bar Immersif</h2>
+      <p>Pas un bar comme les autres. Un cabinet de curiosités vivant, avec des écrans partout, une déco onirique, un grand écran de projection, et des événements chaque semaine.</p>
+      <p>Spiritueux, bières artisanales, vins locaux, cocktails maison, mocktails. Et une cuisine finger food : tapas, camembert fondu, hot dogs, frites.</p>
+      <p>Ouvert du jeudi au dimanche à partir de 18h. Privatisable pour vos événements.</p>
+      <div class="bar-highlights">
+        <span class="tag">Licence IV</span>
+        <span class="tag">Grand écran</span>
+        <span class="tag">Déco immersive</span>
+        <span class="tag">Cocktails maison</span>
+        <span class="tag">Privatisable</span>
+        <span class="tag">Jusqu'à 52 personnes</span>
+      </div>
+    </div>
+
+    <div class="agenda">
+      <div class="agenda-jour">
+        <div class="jour-label">
+          <span class="jour-nom">JEU</span>
+          <span class="jour-heure">18h–23h</span>
+        </div>
+        <div class="jour-content">
+          <div class="jour-titre">Afterwork & Happy Hour</div>
+          <div class="jour-desc">Le rendez-vous pro de la vallée de la Drôme. Cocktails, networking, ambiance détendue.</div>
+        </div>
+      </div>
+      <div class="agenda-jour">
+        <div class="jour-label">
+          <span class="jour-nom">VEN</span>
+          <span class="jour-heure">18h–00h</span>
+        </div>
+        <div class="jour-content">
+          <div class="jour-titre">Soirée variable</div>
+          <div class="jour-desc">Open Mic (1×/mois) · Concerts & spectacles · Soirée danse pop · Times Up géant sur écran.</div>
+        </div>
+      </div>
+      <div class="agenda-jour">
+        <div class="jour-label">
+          <span class="jour-nom">SAM</span>
+          <span class="jour-heure">18h–2h</span>
+        </div>
+        <div class="jour-content">
+          <div class="jour-titre">Soirée Électro</div>
+          <div class="jour-desc">DJ en live tous les samedis. House, électro, techno. On danse.</div>
+        </div>
+      </div>
+      <div class="agenda-jour">
+        <div class="jour-label">
+          <span class="jour-nom">DIM</span>
+          <span class="jour-heure">18h–23h</span>
+        </div>
+        <div class="jour-content">
+          <div class="jour-titre">Blind Test</div>
+          <div class="jour-desc">Soirée blind test ambiance familiale/réguliers. Équipes, points, fous rires.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─── STUDIOS ─── -->
+<section class="studios-section" id="studios">
+  <div class="studios-intro">
+    <div class="studios-text">
+      <div class="section-label">Ce qui rend tout possible</div>
+      <h2>LUMIIA Studios</h2>
+      <p>Derrière les expériences, il y a des studios professionnels. Trois espaces acoustiquement traités, équipés pour la vidéo, l'audio, le live et la production numérique.</p>
+      <p>C'est ce qui donne à LUMIIA une dimension que vous ne trouvez nulle part ailleurs dans la région : pas juste un lieu de loisirs, un outil de création accessible à tous.</p>
+      <p>Les studios accueillent des artistes et créateurs en dehors des horaires d'ouverture. Enregistrement, podcast, tournage, clip, formation.</p>
+      <a href="https://www.lumiiastudios.fr" class="btn-ghost" style="margin-top:1.5rem; display:inline-block;">lumiiastudios.fr →</a>
+    </div>
+    <div class="studio-cards">
+      <div class="studio-card">
+        <div class="studio-info">
+          <h4>Studio 1</h4>
+          <p>Défoule Room le soir · Hollywood Super Green · Scène live · Grand écran</p>
+        </div>
+        <div class="studio-surface">75m²</div>
+      </div>
+      <div class="studio-card">
+        <div class="studio-info">
+          <h4>Studio 2</h4>
+          <p>Régie technique · GrandMA2 · Multicam · Streaming live · Non public</p>
+        </div>
+        <div class="studio-surface">18m²</div>
+      </div>
+      <div class="studio-card">
+        <div class="studio-info">
+          <h4>Studio 3</h4>
+          <p>Karaoké privé · Podcast · Enregistrement · Acoustique traitée</p>
+        </div>
+        <div class="studio-surface">15m²</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─── INFOS PRATIQUES ─── -->
+<section class="infos" id="infos">
+  <div class="section-label">Venir nous voir</div>
+  <h2>Infos pratiques</h2>
+
+  <div class="infos-grid">
+    <div class="info-bloc">
+      <h3>Horaires</h3>
+      <p>
+        Jeudi · 18h – 23h<br>
+        Vendredi · 18h – minuit<br>
+        Samedi · 18h – 2h<br>
+        Dimanche · 18h – 23h<br><br>
+        <em>Hors vacances scolaires selon programmation</em>
+      </p>
+    </div>
+    <div class="info-bloc">
+      <h3>Adresse</h3>
+      <address>
+        1 route de Fontagnal<br>
+        Le Temple<br>
+        26400 Aouste-sur-Sye<br>
+        Drôme (26)<br><br>
+        <a href="tel:0783516285" style="color: var(--or); text-decoration:none;">07 83 51 62 85</a><br>
+        <a href="mailto:contact@lumiia.fr" style="color: var(--or); text-decoration:none;">contact@lumiia.fr</a>
+      </address>
+    </div>
+    <div class="info-bloc">
+      <h3>Contact & Résa</h3>
+      <p>
+        Pour les packs et privatisations, contactez-nous par mail ou par téléphone. Nous répondons sous 24h.<br><br>
+        Rejoignez notre WhatsApp pour recevoir la programmation chaque semaine — un message, l'essentiel, c'est tout.
+      </p>
+      <a href="#" class="btn-primary" style="margin-top:1.2rem; font-size:0.65rem;">Rejoindre le groupe WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div>
+    <div class="footer-logo">LUMIIA</div>
+    <div class="footer-baseline">Bar · Expériences · Studios — Aouste-sur-Sye</div>
+  </div>
+  <p>© 2025 I-IMMERSION SAS · SIRET 934 873 217 · Licence IV</p>
+</footer>
+
+</body>
+</html>
