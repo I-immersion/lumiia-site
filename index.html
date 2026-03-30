@@ -1358,7 +1358,203 @@
     footer { flex-direction: column; align-items: flex-start; }
   }
 
-  /* ─── DRAWER RÉSERVATION ─── */
+  /* ─── AGENDA PUBLIC ─── */
+  .agenda-section { background: var(--noir2); }
+
+  .agenda-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 2rem 0 1.5rem;
+  }
+
+  .agenda-nav-btn {
+    font-family: 'Space Mono', monospace;
+    font-size: 1rem;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--texte);
+    width: 2.5rem;
+    height: 2.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .agenda-nav-btn:hover { border-color: var(--or); color: var(--or); }
+
+  .agenda-mois-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0.05em;
+    color: var(--blanc);
+    text-transform: capitalize;
+    min-width: 200px;
+  }
+
+  .agenda-cal {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+    margin-bottom: 2rem;
+  }
+
+  .cal-header {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--texte2);
+    padding: 0.5rem 0;
+    text-align: center;
+  }
+
+  .cal-day {
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    color: var(--texte2);
+    position: relative;
+    cursor: default;
+    border-radius: 2px;
+    transition: background 0.2s;
+    gap: 2px;
+  }
+
+  .cal-day.has-event {
+    color: var(--blanc);
+    cursor: pointer;
+    background: rgba(212,168,83,0.08);
+    border: 1px solid rgba(212,168,83,0.2);
+  }
+
+  .cal-day.has-event:hover { background: rgba(212,168,83,0.18); }
+
+  .cal-day.today { color: var(--or); font-weight: 700; }
+
+  .cal-day.selected {
+    background: var(--or) !important;
+    color: var(--noir) !important;
+    border-color: var(--or) !important;
+  }
+
+  .cal-day.empty { opacity: 0; pointer-events: none; }
+
+  .cal-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--or);
+  }
+
+  .agenda-events-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    min-height: 80px;
+  }
+
+  .agenda-event-row {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.2rem 1.5rem;
+    background: var(--noir3);
+    border: 1px solid rgba(255,255,255,0.05);
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 2px;
+  }
+
+  .agenda-event-row:hover { border-color: rgba(212,168,83,0.3); background: var(--gris2); }
+
+  .agenda-event-date {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    color: var(--or);
+    line-height: 1;
+    min-width: 2.5rem;
+    text-align: center;
+  }
+
+  .agenda-event-dateinfo {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--texte2);
+  }
+
+  .agenda-event-info { flex: 1; }
+
+  .agenda-event-titre {
+    font-weight: 500;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .agenda-event-meta {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--texte2);
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .agenda-badge {
+    padding: 0.2rem 0.5rem;
+    border-radius: 2px;
+    font-size: 0.5rem;
+  }
+
+  .agenda-badge.gratuit { background: rgba(76,175,80,0.15); color: #4caf50; }
+  .agenda-badge.payant { background: rgba(212,168,83,0.15); color: var(--or); }
+  .agenda-badge.resa { background: rgba(58,184,200,0.15); color: var(--cyan); }
+
+  .agenda-event-arrow {
+    font-size: 1rem;
+    color: var(--texte2);
+    transition: color 0.2s;
+  }
+
+  .agenda-event-row:hover .agenda-event-arrow { color: var(--or); }
+
+  .agenda-empty {
+    text-align: center;
+    padding: 3rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--texte2);
+  }
+
+  /* Drawer agenda */
+  .drawer-heure {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--or);
+    margin-bottom: 0.8rem;
+  }
+
+  @media (max-width: 900px) {
+    .agenda-cal { gap: 1px; }
+    .cal-day { font-size: 0.75rem; }
+    .agenda-event-row { padding: 1rem; gap: 1rem; }
+  }
+
+  @media (max-width: 600px) {
+    .agenda-mois-label { font-size: 1.5rem; min-width: 150px; }
+  }
   .drawer-overlay {
     position: fixed;
     inset: 0;
@@ -1569,11 +1765,12 @@
     <li><a href="#spectacle">Spectacle</a></li>
     <li><a href="#etage">1er étage</a></li>
     <li><a href="#rdc">Bar & Expériences</a></li>
+    <li><a href="#agenda">Agenda</a></li>
     <li><a href="#packs">Packs</a></li>
     <li><a href="#atelier">L'atelier</a></li>
     <li><a href="#infos">Infos</a></li>
   </ul>
-  <span class="nav-version">v2.6.0</span>
+  <span class="nav-version">v2.7.0</span>
   <a href="#packs" class="nav-cta">Réserver</a>
 </nav>
 
@@ -1930,6 +2127,25 @@
       <span class="bar-photo-label">Cabinet de curiosités</span>
     </div>
   </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─── AGENDA ─── -->
+<section class="agenda-section" id="agenda">
+  <div class="section-label">Programmation</div>
+  <h2>Agenda.</h2>
+  <p class="intro-text">Toutes nos dates à venir. Cliquez sur un événement pour les détails et la réservation.</p>
+
+  <div class="agenda-nav">
+    <button class="agenda-nav-btn" id="agendaPrev" onclick="agendaPrevMonth()">←</button>
+    <div class="agenda-mois-label" id="agendaMoisLabel"></div>
+    <button class="agenda-nav-btn" id="agendaNext" onclick="agendaNextMonth()">→</button>
+  </div>
+
+  <div class="agenda-cal" id="agendaCal"></div>
+
+  <div class="agenda-events-list" id="agendaEventsList"></div>
 </section>
 
 <div class="divider"></div>
@@ -2423,7 +2639,7 @@
     <li><a href="https://www.lumiiastudios.fr" target="_blank">Studios Pro</a></li>
     <li><a href="#infos">Contact</a></li>
   </ul>
-  <div class="footer-copy">© 2026 I-IMMERSION SAS · lumiia.fr · v2.6.0</div>
+  <div class="footer-copy">© 2026 I-IMMERSION SAS · lumiia.fr · v2.7.0</div>
 </footer>
 
 <script>
@@ -2547,6 +2763,220 @@ function closeDrawer() {
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') closeDrawer();
 });
+
+// ─── AGENDA PUBLIC ────────────────────────────────────────────
+(function() {
+  var FIREBASE_URL = 'https://lumiia-live-default-rtdb.europe-west1.firebasedatabase.app/agenda/events.json';
+  var MOIS_FR = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+  var JOURS_FR_COURT = ['Lun','Mar','Mer','Jeu','Ven','Sam','Dim'];
+  var JOURS_FR = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
+  var MOIS_COURT = ['Jan','Fév','Mar','Avr','Mai','Jun','Jul','Aoû','Sep','Oct','Nov','Déc'];
+
+  var now = new Date();
+  var currentYear = now.getFullYear();
+  var currentMonth = now.getMonth();
+  var selectedDate = null;
+  var allEvents = {};
+
+  function fetchEvents() {
+    fetch(FIREBASE_URL)
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        allEvents = data || {};
+        renderCalendar();
+        renderEventsList(null);
+      })
+      .catch(function() {
+        document.getElementById('agendaEventsList').innerHTML =
+          '<div class="agenda-empty">Impossible de charger les événements.</div>';
+      });
+  }
+
+  function getEventsForDate(dateStr) {
+    return Object.entries(allEvents)
+      .filter(function(e) { return e[1].date === dateStr; })
+      .map(function(e) { return Object.assign({ id: e[0] }, e[1]); })
+      .sort(function(a, b) { return (a.heure || '').localeCompare(b.heure || ''); });
+  }
+
+  function getEventDatesForMonth(year, month) {
+    var prefix = year + '-' + String(month + 1).padStart(2, '0');
+    var dates = new Set();
+    Object.values(allEvents).forEach(function(e) {
+      if (e.date && e.date.startsWith(prefix)) dates.add(e.date);
+    });
+    return dates;
+  }
+
+  function renderCalendar() {
+    var cal = document.getElementById('agendaCal');
+    var label = document.getElementById('agendaMoisLabel');
+    if (!cal || !label) return;
+
+    label.textContent = MOIS_FR[currentMonth] + ' ' + currentYear;
+
+    var eventDates = getEventDatesForMonth(currentYear, currentMonth);
+    var todayStr = now.toISOString().split('T')[0];
+
+    // En-têtes jours
+    var html = JOURS_FR_COURT.map(function(j) {
+      return '<div class="cal-header">' + j + '</div>';
+    }).join('');
+
+    // 1er jour du mois (0=dim, converti en lun=0)
+    var firstDay = new Date(currentYear, currentMonth, 1).getDay();
+    var offset = (firstDay + 6) % 7; // lundi = 0
+    var daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+
+    // Cases vides avant
+    for (var i = 0; i < offset; i++) {
+      html += '<div class="cal-day empty"></div>';
+    }
+
+    // Jours
+    for (var d = 1; d <= daysInMonth; d++) {
+      var dateStr = currentYear + '-' + String(currentMonth + 1).padStart(2, '0') + '-' + String(d).padStart(2, '0');
+      var hasEvt = eventDates.has(dateStr);
+      var isToday = dateStr === todayStr;
+      var isSelected = dateStr === selectedDate;
+
+      var cls = 'cal-day';
+      if (hasEvt) cls += ' has-event';
+      if (isToday) cls += ' today';
+      if (isSelected) cls += ' selected';
+
+      var onclick = hasEvt ? 'agendaSelectDate("' + dateStr + '")' : '';
+      html += '<div class="' + cls + '"' + (onclick ? ' onclick="' + onclick + '"' : '') + '>';
+      html += d;
+      if (hasEvt) html += '<div class="cal-dot"></div>';
+      html += '</div>';
+    }
+
+    cal.innerHTML = html;
+  }
+
+  function renderEventsList(dateStr) {
+    var container = document.getElementById('agendaEventsList');
+    if (!container) return;
+
+    var events;
+    if (dateStr) {
+      events = getEventsForDate(dateStr);
+    } else {
+      // Tous les événements à venir du mois
+      var todayStr = now.toISOString().split('T')[0];
+      var prefix = currentYear + '-' + String(currentMonth + 1).padStart(2, '0');
+      events = Object.entries(allEvents)
+        .filter(function(e) { return e[1].date && e[1].date.startsWith(prefix) && e[1].date >= todayStr; })
+        .map(function(e) { return Object.assign({ id: e[0] }, e[1]); })
+        .sort(function(a, b) { return a.date.localeCompare(b.date) || (a.heure || '').localeCompare(b.heure || ''); });
+    }
+
+    if (events.length === 0) {
+      container.innerHTML = '<div class="agenda-empty">' +
+        (dateStr ? 'Aucun événement ce jour.' : 'Aucun événement à venir ce mois.') +
+        '</div>';
+      return;
+    }
+
+    container.innerHTML = events.map(function(e) {
+      var d = new Date(e.date + 'T12:00:00');
+      var jour = d.getDate().toString().padStart(2, '0');
+      var jourSem = JOURS_FR[d.getDay()];
+      var mois = MOIS_COURT[d.getMonth()];
+
+      return '<div class="agenda-event-row" onclick="agendaOpenEvent(\'' + e.id + '\')">' +
+        '<div>' +
+          '<div class="agenda-event-date">' + jour + '</div>' +
+          '<div class="agenda-event-dateinfo">' + jourSem.slice(0,3) + ' ' + mois + '</div>' +
+        '</div>' +
+        '<div class="agenda-event-info">' +
+          '<div class="agenda-event-titre">' + (e.titre || '') + '</div>' +
+          '<div class="agenda-event-meta">' +
+            (e.heure ? '<span>' + e.heure + '</span>' : '') +
+            (e.tarif ? '<span>' + e.tarif + '</span>' : '') +
+            '<span class="agenda-badge ' + (e.type || 'gratuit') + '">' + (e.type === 'payant' ? 'Payant' : 'Gratuit') + '</span>' +
+            (e.resa ? '<span class="agenda-badge resa">Réservation</span>' : '') +
+          '</div>' +
+        '</div>' +
+        '<div class="agenda-event-arrow">→</div>' +
+        '</div>';
+    }).join('');
+  }
+
+  window.agendaPrevMonth = function() {
+    currentMonth--;
+    if (currentMonth < 0) { currentMonth = 11; currentYear--; }
+    selectedDate = null;
+    renderCalendar();
+    renderEventsList(null);
+  };
+
+  window.agendaNextMonth = function() {
+    currentMonth++;
+    if (currentMonth > 11) { currentMonth = 0; currentYear++; }
+    selectedDate = null;
+    renderCalendar();
+    renderEventsList(null);
+  };
+
+  window.agendaSelectDate = function(dateStr) {
+    selectedDate = selectedDate === dateStr ? null : dateStr;
+    renderCalendar();
+    renderEventsList(selectedDate);
+  };
+
+  window.agendaOpenEvent = function(id) {
+    var e = allEvents[id];
+    if (!e) return;
+
+    var d = new Date(e.date + 'T12:00:00');
+    var jourSem = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'][d.getDay()];
+    var jour = d.getDate();
+    var mois = MOIS_FR[d.getMonth()];
+    var annee = d.getFullYear();
+
+    // Remplir le drawer
+    document.getElementById('drawerImg').src = e.imgUrl || 'images/bar-ambiance.jpg';
+    document.getElementById('drawerImg').alt = e.titre || '';
+    document.getElementById('drawerNom').textContent = e.titre || '';
+    document.getElementById('drawerSpecs').textContent = jourSem + ' ' + jour + ' ' + mois + ' ' + annee;
+
+    // Heure dans la desc
+    var heureHtml = e.heure ? '<div class="drawer-heure">🕐 ' + e.heure + '</div>' : '';
+    document.getElementById('drawerDesc').innerHTML = heureHtml + (e.desc || '');
+
+    document.getElementById('drawerPrix').textContent = e.tarif || (e.type === 'gratuit' ? 'Gratuit' : '');
+    document.getElementById('drawerPrixLabel').textContent = '';
+
+    // Boutons durée
+    var btnsEl = document.getElementById('drawerBtns');
+    btnsEl.innerHTML = '';
+    btnsEl.style.display = 'none';
+
+    // Iframe si réservation
+    var iframe = document.getElementById('drawerIframe');
+    if (e.resa && e.resaId) {
+      iframe.src = BASE_URL + e.resaId;
+      iframe.style.display = 'block';
+      document.querySelector('.drawer-resa-title').style.display = 'block';
+    } else {
+      iframe.src = '';
+      iframe.style.display = 'none';
+      document.querySelector('.drawer-resa-title').style.display = 'none';
+    }
+
+    document.getElementById('drawer').classList.add('open');
+    document.getElementById('drawerOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+
+  // Init
+  fetchEvents();
+
+  // Refresh toutes les 5 min
+  setInterval(fetchEvents, 300000);
+})();
 </script>
 
 </body>

@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LUMIIA Admin — Agenda</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap');
+
+  :root {
+    --noir: #0a0a0a;
+    --noir2: #111111;
+    --noir3: #1a1a1a;
+    --blanc: #f0ece3;
+    --or: #d4a853;
+    --or2: #f0c060;
+    --rose: #e8455a;
+    --cyan: #3ab8c8;
+    --vert: #4caf50;
+    --texte: #c8c0b0;
+    --texte2: #7a7268;
+    --border: rgba(255,255,255,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--noir);
+    color: var(--blanc);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+  }
+
+  /* ─── LOGIN ─── */
+  .login-screen {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .login-box {
+    background: var(--noir2);
+    border: 1px solid var(--border);
+    padding: 3rem;
+    width: 380px;
+    text-align: center;
+  }
+
+  .login-logo {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.2rem;
+    letter-spacing: 0.2em;
+    color: var(--or);
+    margin-bottom: 0.4rem;
+  }
+
+  .login-sub {
+    font-size: 0.75rem;
+    color: var(--texte2);
+    letter-spacing: 0.1em;
+    font-family: 'Space Mono', monospace;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+
+  .login-input {
+    width: 100%;
+    background: var(--noir3);
+    border: 1px solid var(--border);
+    color: var(--blanc);
+    padding: 0.9rem 1rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    margin-bottom: 1rem;
+    text-align: center;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .login-input:focus { border-color: var(--or); }
+
+  .login-btn {
+    width: 100%;
+    background: var(--or);
+    color: var(--noir);
+    border: none;
+    padding: 0.9rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .login-btn:hover { background: var(--or2); }
+  .login-error { color: var(--rose); font-size: 0.8rem; margin-top: 0.8rem; }
+
+  /* ─── APP ─── */
+  .app { display: none; }
+
+  header {
+    background: var(--noir2);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .header-logo {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.9rem;
+    letter-spacing: 0.2em;
+    color: var(--or);
+  }
+
+  .header-sub {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--texte2);
+    text-transform: uppercase;
+    margin-top: 0.2rem;
+  }
+
+  .logout-btn {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--texte2);
+    padding: 0.4rem 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .logout-btn:hover { border-color: var(--rose); color: var(--rose); }
+
+  .main {
+    display: grid;
+    grid-template-columns: 420px 1fr;
+    gap: 0;
+    min-height: calc(100vh - 61px);
+  }
+
+  /* ─── FORMULAIRE ─── */
+  .form-panel {
+    background: var(--noir2);
+    border-right: 1px solid var(--border);
+    padding: 2rem;
+    overflow-y: auto;
+  }
+
+  .form-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--or);
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .form-group {
+    margin-bottom: 1.2rem;
+  }
+
+  label {
+    display: block;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--texte2);
+    margin-bottom: 0.5rem;
+  }
+
+  input[type="text"],
+  input[type="date"],
+  input[type="time"],
+  input[type="number"],
+  textarea,
+  select {
+    width: 100%;
+    background: var(--noir3);
+    border: 1px solid var(--border);
+    color: var(--blanc);
+    padding: 0.75rem 0.9rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+    border-radius: 2px;
+  }
+
+  input:focus, textarea:focus, select:focus { border-color: var(--or); }
+
+  textarea { resize: vertical; min-height: 80px; line-height: 1.5; }
+
+  select option { background: var(--noir2); }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+  }
+
+  /* Toggles */
+  .toggle-group {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .toggle-btn {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--texte2);
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 2px;
+  }
+
+  .toggle-btn.active-gratuit { background: rgba(76,175,80,0.15); border-color: var(--vert); color: var(--vert); }
+  .toggle-btn.active-payant { background: rgba(212,168,83,0.15); border-color: var(--or); color: var(--or); }
+  .toggle-btn.active-resa { background: rgba(58,184,200,0.15); border-color: var(--cyan); color: var(--cyan); }
+
+  /* Récurrence */
+  .recurrence-box {
+    background: var(--noir3);
+    border: 1px solid var(--border);
+    padding: 1rem;
+    border-radius: 2px;
+  }
+
+  .recurrence-options {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.8rem;
+    flex-wrap: wrap;
+  }
+
+  .rec-btn {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.4rem 0.7rem;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--texte2);
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 2px;
+  }
+
+  .rec-btn.active { background: rgba(123,79,166,0.2); border-color: #a07fd0; color: #a07fd0; }
+
+  .rec-count { display: none; align-items: center; gap: 0.8rem; }
+  .rec-count.visible { display: flex; }
+  .rec-count input { width: 70px; }
+  .rec-count span { font-size: 0.8rem; color: var(--texte); }
+
+  /* Image upload */
+  .image-upload {
+    border: 1px dashed var(--border);
+    padding: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    background: var(--noir3);
+    border-radius: 2px;
+    position: relative;
+  }
+
+  .image-upload:hover { border-color: var(--or); }
+  .image-upload input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+
+  .image-upload-text {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--texte2);
+  }
+
+  .image-preview {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    display: none;
+    border-radius: 2px;
+    margin-top: 0.5rem;
+  }
+
+  .submit-btn {
+    width: 100%;
+    background: var(--or);
+    color: var(--noir);
+    border: none;
+    padding: 1rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 0.5rem;
+    border-radius: 2px;
+  }
+
+  .submit-btn:hover { background: var(--or2); }
+  .submit-btn:disabled { background: var(--texte2); cursor: not-allowed; }
+
+  .form-feedback {
+    text-align: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    margin-top: 0.8rem;
+    padding: 0.6rem;
+    border-radius: 2px;
+    display: none;
+  }
+
+  .form-feedback.ok { background: rgba(76,175,80,0.15); color: var(--vert); border: 1px solid var(--vert); }
+  .form-feedback.err { background: rgba(232,69,90,0.15); color: var(--rose); border: 1px solid var(--rose); }
+
+  /* ─── LISTE ÉVÉNEMENTS ─── */
+  .list-panel {
+    padding: 2rem;
+    overflow-y: auto;
+  }
+
+  .list-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .list-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--or);
+  }
+
+  .list-filter {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .filter-btn {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--texte2);
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 2px;
+  }
+
+  .filter-btn.active { border-color: var(--or); color: var(--or); }
+
+  .events-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .event-card {
+    background: var(--noir2);
+    border: 1px solid var(--border);
+    padding: 1rem 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: border-color 0.2s;
+    border-radius: 2px;
+  }
+
+  .event-card:hover { border-color: rgba(212,168,83,0.3); }
+
+  .event-date-badge {
+    text-align: center;
+    min-width: 48px;
+    flex-shrink: 0;
+  }
+
+  .event-day {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.4rem;
+    color: var(--or);
+    line-height: 1;
+  }
+
+  .event-month {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--texte2);
+  }
+
+  .event-info { flex: 1; min-width: 0; }
+
+  .event-nom {
+    font-weight: 500;
+    font-size: 0.95rem;
+    margin-bottom: 0.2rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .event-meta {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--texte2);
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+  }
+
+  .badge {
+    padding: 0.2rem 0.5rem;
+    border-radius: 2px;
+    font-size: 0.5rem;
+  }
+
+  .badge-gratuit { background: rgba(76,175,80,0.15); color: var(--vert); }
+  .badge-payant { background: rgba(212,168,83,0.15); color: var(--or); }
+  .badge-resa { background: rgba(58,184,200,0.15); color: var(--cyan); }
+  .badge-rec { background: rgba(123,79,166,0.15); color: #a07fd0; }
+
+  .event-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  .action-btn {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.6rem;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--texte2);
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 2px;
+  }
+
+  .action-btn.del:hover { border-color: var(--rose); color: var(--rose); }
+  .action-btn.edit:hover { border-color: var(--or); color: var(--or); }
+
+  .empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--texte2);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .main { grid-template-columns: 1fr; }
+    .form-panel { border-right: none; border-bottom: 1px solid var(--border); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── LOGIN ─── -->
+<div class="login-screen" id="loginScreen">
+  <div class="login-box">
+    <div class="login-logo">LUMIIA</div>
+    <div class="login-sub">Administration · Agenda</div>
+    <input type="password" class="login-input" id="mdpInput" placeholder="Mot de passe" onkeydown="if(event.key==='Enter')login()">
+    <button class="login-btn" onclick="login()">Accéder</button>
+    <div class="login-error" id="loginError"></div>
+  </div>
+</div>
+
+<!-- ─── APP ─── -->
+<div class="app" id="app">
+  <header>
+    <div>
+      <div class="header-logo">LUMIIA · Admin</div>
+      <div class="header-sub">Gestion de l'agenda</div>
+    </div>
+    <button class="logout-btn" onclick="logout()">Déconnexion</button>
+  </header>
+
+  <div class="main">
+
+    <!-- FORMULAIRE -->
+    <div class="form-panel">
+      <div class="form-title" id="formTitle">Nouvel événement</div>
+
+      <input type="hidden" id="editId">
+
+      <div class="form-group">
+        <label>Titre de l'événement *</label>
+        <input type="text" id="evtTitre" placeholder="Ex: Soirée Électro avec DJ Kenzo">
+      </div>
+
+      <div class="form-group">
+        <label>Description</label>
+        <textarea id="evtDesc" placeholder="Description courte affichée dans le drawer..."></textarea>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Date *</label>
+          <input type="date" id="evtDate">
+        </div>
+        <div class="form-group">
+          <label>Heure *</label>
+          <input type="time" id="evtHeure" value="20:00">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Image (URL ou upload)</label>
+        <input type="text" id="evtImgUrl" placeholder="https://... ou laisse vide pour uploader">
+      </div>
+
+      <div class="form-group">
+        <label>Tarif / Prix affiché</label>
+        <input type="text" id="evtTarif" placeholder="Ex: Gratuit · Entrée libre, ou 10€ / pers">
+      </div>
+
+      <div class="form-group">
+        <label>Type d'événement</label>
+        <div class="toggle-group">
+          <button class="toggle-btn active-gratuit" id="btnGratuit" onclick="setType('gratuit')">Gratuit</button>
+          <button class="toggle-btn" id="btnPayant" onclick="setType('payant')">Payant</button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Module de réservation</label>
+        <div class="toggle-group">
+          <button class="toggle-btn" id="btnResaOff" onclick="setResa(false)">Sans réservation</button>
+          <button class="toggle-btn active-resa" id="btnResaOn" onclick="setResa(true)">Avec réservation</button>
+        </div>
+      </div>
+
+      <div class="form-group" id="resaIdGroup" style="display:none;">
+        <label>ID produit réservation</label>
+        <input type="number" id="evtResaId" placeholder="Ex: 5">
+      </div>
+
+      <div class="form-group">
+        <label>Récurrence</label>
+        <div class="recurrence-box">
+          <div class="recurrence-options">
+            <button class="rec-btn active" id="recNone" onclick="setRec('none')">Aucune</button>
+            <button class="rec-btn" id="recHebdo" onclick="setRec('hebdo')">Chaque semaine</button>
+            <button class="rec-btn" id="recMensuel" onclick="setRec('mensuel')">Chaque mois</button>
+          </div>
+          <div class="rec-count" id="recCount">
+            <span>Répéter</span>
+            <input type="number" id="recTimes" value="4" min="1" max="52">
+            <span>fois</span>
+          </div>
+        </div>
+      </div>
+
+      <button class="submit-btn" id="submitBtn" onclick="saveEvent()">Enregistrer l'événement</button>
+      <button class="submit-btn" id="cancelBtn" onclick="cancelEdit()" style="display:none;background:transparent;border:1px solid var(--border);color:var(--texte2);margin-top:0.5rem;">Annuler la modification</button>
+      <div class="form-feedback" id="formFeedback"></div>
+    </div>
+
+    <!-- LISTE -->
+    <div class="list-panel">
+      <div class="list-header">
+        <div class="list-title">Événements enregistrés</div>
+        <div class="list-filter">
+          <button class="filter-btn active" onclick="setFilter('all', this)">Tous</button>
+          <button class="filter-btn" onclick="setFilter('futur', this)">À venir</button>
+          <button class="filter-btn" onclick="setFilter('passe', this)">Passés</button>
+        </div>
+      </div>
+      <div class="events-list" id="eventsList">
+        <div class="empty-state">Chargement...</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Firebase -->
+<script type="module">
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js';
+import { getDatabase, ref, push, set, remove, onValue, serverTimestamp }
+  from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBPgjVFKrP80qX_hlfUFqL168XONfNIBA4",
+  authDomain: "lumiia-live.firebaseapp.com",
+  databaseURL: "https://lumiia-live-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "lumiia-live",
+  storageBucket: "lumiia-live.firebasestorage.app",
+  messagingSenderId: "823919513931",
+  appId: "1:823919513931:web:6f6f3c7c6d1699457b18ce"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const agendaRef = ref(db, 'agenda/events');
+
+// ─── MDP ───────────────────────────────────────────────────────
+const MDP = 'lumiia2026'; // ← changer ici
+
+window.login = function() {
+  const val = document.getElementById('mdpInput').value;
+  if (val === MDP) {
+    sessionStorage.setItem('lumiia_admin', '1');
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    startListening();
+  } else {
+    document.getElementById('loginError').textContent = 'Mot de passe incorrect';
+  }
+};
+
+window.logout = function() {
+  sessionStorage.removeItem('lumiia_admin');
+  location.reload();
+};
+
+// Auto-login si session active
+if (sessionStorage.getItem('lumiia_admin') === '1') {
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  startListening();
+}
+
+// ─── ÉTAT FORMULAIRE ───────────────────────────────────────────
+let evtType = 'gratuit';
+let evtResa = true;
+let evtRec = 'none';
+let currentFilter = 'all';
+let allEvents = {};
+
+window.setType = function(t) {
+  evtType = t;
+  document.getElementById('btnGratuit').className = 'toggle-btn' + (t === 'gratuit' ? ' active-gratuit' : '');
+  document.getElementById('btnPayant').className = 'toggle-btn' + (t === 'payant' ? ' active-payant' : '');
+};
+
+window.setResa = function(v) {
+  evtResa = v;
+  document.getElementById('btnResaOff').className = 'toggle-btn' + (!v ? ' active-resa' : '');
+  document.getElementById('btnResaOn').className = 'toggle-btn' + (v ? ' active-resa' : '');
+  document.getElementById('resaIdGroup').style.display = v ? 'block' : 'none';
+};
+
+window.setRec = function(r) {
+  evtRec = r;
+  ['recNone','recHebdo','recMensuel'].forEach(id => {
+    document.getElementById(id).className = 'rec-btn';
+  });
+  document.getElementById(r === 'none' ? 'recNone' : r === 'hebdo' ? 'recHebdo' : 'recMensuel').className = 'rec-btn active';
+  document.getElementById('recCount').className = 'rec-count' + (r !== 'none' ? ' visible' : '');
+};
+
+// Init
+setType('gratuit');
+setResa(false);
+setRec('none');
+
+// ─── SAUVEGARDE ───────────────────────────────────────────────
+window.saveEvent = async function() {
+  const titre = document.getElementById('evtTitre').value.trim();
+  const date = document.getElementById('evtDate').value;
+  const heure = document.getElementById('evtHeure').value;
+
+  if (!titre || !date || !heure) {
+    showFeedback('Titre, date et heure sont obligatoires', 'err');
+    return;
+  }
+
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Enregistrement...';
+
+  const baseEvent = {
+    titre,
+    desc: document.getElementById('evtDesc').value.trim(),
+    date,
+    heure,
+    imgUrl: document.getElementById('evtImgUrl').value.trim(),
+    tarif: document.getElementById('evtTarif').value.trim(),
+    type: evtType,
+    resa: evtResa,
+    resaId: evtResa ? (parseInt(document.getElementById('evtResaId').value) || 1) : null,
+    createdAt: serverTimestamp()
+  };
+
+  try {
+    const editId = document.getElementById('editId').value;
+
+    if (editId) {
+      // Modification
+      await set(ref(db, 'agenda/events/' + editId), baseEvent);
+      showFeedback('Événement modifié ✓', 'ok');
+      cancelEdit();
+    } else {
+      // Création avec récurrence
+      const times = evtRec !== 'none' ? parseInt(document.getElementById('recTimes').value) || 1 : 1;
+      const baseDate = new Date(date + 'T12:00:00');
+
+      for (let i = 0; i < times; i++) {
+        const d = new Date(baseDate);
+        if (i > 0) {
+          if (evtRec === 'hebdo') d.setDate(d.getDate() + (7 * i));
+          if (evtRec === 'mensuel') d.setMonth(d.getMonth() + i);
+        }
+        const dateStr = d.toISOString().split('T')[0];
+        await push(agendaRef, { ...baseEvent, date: dateStr });
+      }
+
+      showFeedback(times > 1 ? `${times} événements créés ✓` : 'Événement créé ✓', 'ok');
+      resetForm();
+    }
+  } catch(e) {
+    showFeedback('Erreur : ' + e.message, 'err');
+  }
+
+  btn.disabled = false;
+  btn.textContent = 'Enregistrer l\'événement';
+};
+
+function resetForm() {
+  document.getElementById('evtTitre').value = '';
+  document.getElementById('evtDesc').value = '';
+  document.getElementById('evtDate').value = '';
+  document.getElementById('evtHeure').value = '20:00';
+  document.getElementById('evtImgUrl').value = '';
+  document.getElementById('evtTarif').value = '';
+  document.getElementById('evtResaId').value = '';
+  document.getElementById('editId').value = '';
+  setType('gratuit');
+  setResa(false);
+  setRec('none');
+}
+
+window.cancelEdit = function() {
+  resetForm();
+  document.getElementById('formTitle').textContent = 'Nouvel événement';
+  document.getElementById('cancelBtn').style.display = 'none';
+};
+
+function showFeedback(msg, type) {
+  const el = document.getElementById('formFeedback');
+  el.textContent = msg;
+  el.className = 'form-feedback ' + type;
+  el.style.display = 'block';
+  setTimeout(() => { el.style.display = 'none'; }, 3000);
+}
+
+// ─── SUPPRESSION ──────────────────────────────────────────────
+window.deleteEvent = async function(id, titre) {
+  if (!confirm(`Supprimer "${titre}" ?`)) return;
+  await remove(ref(db, 'agenda/events/' + id));
+};
+
+// ─── ÉDITION ──────────────────────────────────────────────────
+window.editEvent = function(id) {
+  const e = allEvents[id];
+  if (!e) return;
+  document.getElementById('editId').value = id;
+  document.getElementById('evtTitre').value = e.titre || '';
+  document.getElementById('evtDesc').value = e.desc || '';
+  document.getElementById('evtDate').value = e.date || '';
+  document.getElementById('evtHeure').value = e.heure || '20:00';
+  document.getElementById('evtImgUrl').value = e.imgUrl || '';
+  document.getElementById('evtTarif').value = e.tarif || '';
+  document.getElementById('evtResaId').value = e.resaId || '';
+  setType(e.type || 'gratuit');
+  setResa(e.resa || false);
+  setRec('none');
+  document.getElementById('formTitle').textContent = 'Modifier l\'événement';
+  document.getElementById('cancelBtn').style.display = 'block';
+  document.querySelector('.form-panel').scrollTop = 0;
+};
+
+// ─── FILTRE ───────────────────────────────────────────────────
+window.setFilter = function(f, btn) {
+  currentFilter = f;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderList();
+};
+
+// ─── LISTE ────────────────────────────────────────────────────
+const MOIS_FR = ['Jan','Fév','Mar','Avr','Mai','Jun','Jul','Aoû','Sep','Oct','Nov','Déc'];
+const JOURS_FR = ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'];
+
+function startListening() {
+  onValue(agendaRef, snap => {
+    allEvents = snap.val() || {};
+    renderList();
+  });
+}
+
+function renderList() {
+  const container = document.getElementById('eventsList');
+  const today = new Date().toISOString().split('T')[0];
+
+  let entries = Object.entries(allEvents).map(([id, e]) => ({ id, ...e }));
+
+  // Filtre
+  if (currentFilter === 'futur') entries = entries.filter(e => e.date >= today);
+  if (currentFilter === 'passe') entries = entries.filter(e => e.date < today);
+
+  // Tri par date
+  entries.sort((a, b) => a.date.localeCompare(b.date));
+
+  if (entries.length === 0) {
+    container.innerHTML = '<div class="empty-state">Aucun événement</div>';
+    return;
+  }
+
+  container.innerHTML = entries.map(e => {
+    const d = new Date(e.date + 'T12:00:00');
+    const jour = d.getDate().toString().padStart(2, '0');
+    const mois = MOIS_FR[d.getMonth()];
+    const jourSem = JOURS_FR[d.getDay()];
+    const isPasse = e.date < today;
+
+    return `
+    <div class="event-card" style="${isPasse ? 'opacity:0.5' : ''}">
+      <div class="event-date-badge">
+        <div class="event-day">${jour}</div>
+        <div class="event-month">${jourSem} ${mois}</div>
+      </div>
+      <div class="event-info">
+        <div class="event-nom">${e.titre || '—'}</div>
+        <div class="event-meta">
+          <span>${e.heure || ''}</span>
+          ${e.tarif ? `<span>${e.tarif}</span>` : ''}
+          <span class="badge badge-${e.type || 'gratuit'}">${e.type === 'payant' ? 'Payant' : 'Gratuit'}</span>
+          ${e.resa ? `<span class="badge badge-resa">Réservation</span>` : ''}
+        </div>
+      </div>
+      <div class="event-actions">
+        <button class="action-btn edit" onclick="editEvent('${e.id}')">Modifier</button>
+        <button class="action-btn del" onclick="deleteEvent('${e.id}', '${(e.titre || '').replace(/'/g, "\\'")}')">Suppr.</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+</script>
+
+</body>
+</html>
