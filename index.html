@@ -1494,15 +1494,37 @@
     margin-bottom: 1rem;
   }
 
-  .drawer-iframe-wrap {
-    margin: 0 -2rem;
+  .drawer-duree-btn {
+    flex: 1;
+    min-width: 80px;
+    padding: 0.6rem 0;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: transparent;
+    color: var(--texte);
+    cursor: pointer;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    text-align: center;
+    border-radius: 2px;
   }
 
-  .drawer-iframe-wrap iframe {
-    width: 100%;
-    height: 600px;
-    border: none;
-    display: block;
+  .drawer-duree-btn:hover {
+    border-color: var(--or);
+    color: var(--or);
+  }
+
+  .drawer-duree-btn.active {
+    background: var(--or);
+    color: var(--noir);
+    border-color: var(--or);
+    font-weight: 700;
+  }
+
+  .drawer-iframe-wrap {
+    margin: 0 -2rem;
   }
 
   @media (max-width: 600px) {
@@ -1534,7 +1556,8 @@
     </div>
     <div class="drawer-resa-title">Choisir un créneau</div>
     <div class="drawer-iframe-wrap">
-      <iframe id="drawerIframe" src="" allowfullscreen loading="lazy"></iframe>
+      <div id="drawerBtns" style="display:flex;gap:8px;padding:0 2rem 1rem;flex-wrap:wrap;"></div>
+      <iframe id="drawerIframe" src="" allowfullscreen loading="lazy" style="width:100%;height:600px;border:none;display:block;"></iframe>
     </div>
   </div>
 </div>
@@ -1550,7 +1573,7 @@
     <li><a href="#atelier">L'atelier</a></li>
     <li><a href="#infos">Infos</a></li>
   </ul>
-  <span class="nav-version">v2.5.0</span>
+  <span class="nav-version">v2.6.0</span>
   <a href="#packs" class="nav-cta">Réserver</a>
 </nav>
 
@@ -1907,61 +1930,6 @@
       <span class="bar-photo-label">Cabinet de curiosités</span>
     </div>
   </div>
-
-  <div class="expe-grid">
-    <div class="expe-item" onclick="openDrawer('defoule')" style="cursor:pointer;">
-      <img src="images/defoule-room.jpg" alt="Défoule Room" class="expe-item-photo">
-      <div class="expe-item-content">
-        <div class="expe-nom">Défoule Room</div>
-        <div class="expe-detail">Zombies, lasers, boutons, moutons et champignons de Mario. 30 minutes intensives dans 70 m² d'écrans et de jeux interactifs fabriqués ici.</div>
-        <div class="expe-specs">Studio 1 · 2 à 19 personnes · Dès 4 ans</div>
-        <div class="expe-tarif">
-          <div class="tarif-chiffre">9€</div>
-          <div class="tarif-unit">/ pers · 30 min</div>
-        </div>
-        <div style="margin-top:1rem;font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--or);border:1px solid rgba(212,168,83,0.4);padding:0.5rem 0.8rem;display:inline-block;">Réserver →</div>
-      </div>
-    </div>
-    <div class="expe-item" onclick="openDrawer('enigmatic')" style="cursor:pointer;">
-      <img src="images/bar-ambiance.jpg" alt="Enigmatic Game" class="expe-item-photo">
-      <div class="expe-item-content">
-        <div class="expe-nom">Enigmatic Game</div>
-        <div class="expe-detail">Chasse au trésor mêlant escape game et enquête dans le décor du bar. Indices cachés partout. Tablette fournie, -12 ans offerts.</div>
-        <div class="expe-specs">Bar · 2 à 6 pers / tablette · Tout public</div>
-        <div class="expe-tarif">
-          <div class="tarif-chiffre">13€</div>
-          <div class="tarif-unit">/ pers · -12 ans offert</div>
-        </div>
-        <div style="margin-top:1rem;font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--or);border:1px solid rgba(212,168,83,0.4);padding:0.5rem 0.8rem;display:inline-block;">Réserver →</div>
-      </div>
-    </div>
-    <div class="expe-item" onclick="openDrawer('hollywood')" style="cursor:pointer;">
-      <img src="images/bar-dj.jpg" alt="Hollywood Super Green" class="expe-item-photo">
-      <div class="expe-item-content">
-        <div class="expe-nom">Hollywood Super Green</div>
-        <div class="expe-detail">Caméras, fond vert, costumes, réalisateur en régie. Vous repartez avec une vidéo de la session. Une expérience unique dans la région.</div>
-        <div class="expe-specs">Studio 1 · 10 à 19 personnes · Animé</div>
-        <div class="expe-tarif">
-          <div class="tarif-chiffre">26€</div>
-          <div class="tarif-unit">/ adulte · 45 min</div>
-        </div>
-        <div style="margin-top:1rem;font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--or);border:1px solid rgba(212,168,83,0.4);padding:0.5rem 0.8rem;display:inline-block;">Réserver →</div>
-      </div>
-    </div>
-    <div class="expe-item" onclick="openDrawer('karaoke')" style="cursor:pointer;">
-      <img src="images/karaoke-neon.jpg" alt="Karaoké Privé" class="expe-item-photo">
-      <div class="expe-item-content">
-        <div class="expe-nom">Karaoké Privé</div>
-        <div class="expe-detail">Studio privatisé pour votre groupe. 3 à 9 personnes dans un espace conçu pour chanter sans se retenir.</div>
-        <div class="expe-specs">Studio 3 · 3 à 9 personnes · Tout public</div>
-        <div class="expe-tarif">
-          <div class="tarif-chiffre">15€</div>
-          <div class="tarif-unit">/ pers · 1h</div>
-        </div>
-        <div style="margin-top:1rem;font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--or);border:1px solid rgba(212,168,83,0.4);padding:0.5rem 0.8rem;display:inline-block;">Réserver →</div>
-      </div>
-    </div>
-  </div>
 </section>
 
 <div class="divider"></div>
@@ -2260,51 +2228,59 @@
 <section class="acarte" id="acarte">
   <div class="section-label">Sans réservation de pack</div>
   <h2>À la carte.</h2>
-  <p class="intro-text">Vous venez découvrir, sans occasion précise. Voici ce qui vous attend selon les disponibilités.</p>
+  <p class="intro-text">Vous venez découvrir, sans occasion précise. Cliquez sur une expérience pour voir les détails et réserver directement.</p>
 
-  <div class="acarte-grid">
-    <div class="acarte-item">
-      <div>
-        <div class="acarte-nom">Défoule Room</div>
-        <div class="acarte-detail">Zombies, lasers, boutons, moutons et champignons de Mario. 30 minutes dans 70 m² d'écrans et de jeux interactifs.</div>
-        <div class="acarte-specs">Studio 1 · 2 à 19 personnes · Dès 4 ans</div>
-      </div>
-      <div class="acarte-tarif">
-        <div class="tarif-chiffre">9€</div>
-        <div class="tarif-unit">/ pers · 30 min</div>
-      </div>
-    </div>
-    <div class="acarte-item">
-      <div>
-        <div class="acarte-nom">Enigmatic Game</div>
-        <div class="acarte-detail">Chasse au trésor mêlant escape game et enquête dans le décor du bar. Tablette fournie.</div>
-        <div class="acarte-specs">Bar LUMIIA · 2 à 6 pers / tablette · Tout public</div>
-      </div>
-      <div class="acarte-tarif">
-        <div class="tarif-chiffre">13€</div>
-        <div class="tarif-unit">/ pers · -12 ans offert</div>
+  <div class="expe-grid" style="margin-top:3rem;">
+    <div class="expe-item" onclick="openDrawer('defoule')" style="cursor:pointer;">
+      <img src="images/defoule-room.jpg" alt="Défoule Room" class="expe-item-photo">
+      <div class="expe-item-content">
+        <div class="expe-nom">Défoule Room</div>
+        <div class="expe-detail">Zombies, lasers, boutons, moutons et champignons de Mario. 30 minutes intensives dans 70 m² d'écrans et de jeux interactifs fabriqués ici.</div>
+        <div class="expe-specs">Studio 1 · 2 à 19 personnes · Dès 4 ans</div>
+        <div class="expe-tarif">
+          <div class="tarif-chiffre">9€</div>
+          <div class="tarif-unit">/ pers · 30 min</div>
+        </div>
+        <div style="margin-top:1rem;font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--or);border:1px solid rgba(212,168,83,0.4);padding:0.5rem 0.8rem;display:inline-block;">Réserver →</div>
       </div>
     </div>
-    <div class="acarte-item">
-      <div>
-        <div class="acarte-nom">Karaoké Privé</div>
-        <div class="acarte-detail">Studio privatisé pour votre groupe. 3 à 9 personnes dans un espace conçu pour chanter sans se retenir.</div>
-        <div class="acarte-specs">Studio 3 · 3 à 9 personnes · Tout public</div>
-      </div>
-      <div class="acarte-tarif">
-        <div class="tarif-chiffre">15€</div>
-        <div class="tarif-unit">/ pers · 1h</div>
+    <div class="expe-item" onclick="openDrawer('enigmatic')" style="cursor:pointer;">
+      <img src="images/bar-ambiance.jpg" alt="Enigmatic Game" class="expe-item-photo">
+      <div class="expe-item-content">
+        <div class="expe-nom">Enigmatic Game</div>
+        <div class="expe-detail">Chasse au trésor mêlant escape game et enquête dans le décor du bar. Indices cachés partout. Tablette fournie, -12 ans offerts.</div>
+        <div class="expe-specs">Bar · 2 à 6 pers / tablette · Tout public</div>
+        <div class="expe-tarif">
+          <div class="tarif-chiffre">13€</div>
+          <div class="tarif-unit">/ pers · -12 ans offert</div>
+        </div>
+        <div style="margin-top:1rem;font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--or);border:1px solid rgba(212,168,83,0.4);padding:0.5rem 0.8rem;display:inline-block;">Réserver →</div>
       </div>
     </div>
-    <div class="acarte-item">
-      <div>
-        <div class="acarte-nom">Hollywood Super Green</div>
-        <div class="acarte-detail">Casting cinéma sur fond vert avec animateur. Décors numériques, costumes, vidéo offerte. Groupe de 10 minimum.</div>
-        <div class="acarte-specs">Studio 1 · 10 à 19 personnes · Animé</div>
+    <div class="expe-item" onclick="openDrawer('hollywood')" style="cursor:pointer;">
+      <img src="images/bar-dj.jpg" alt="Hollywood Super Green" class="expe-item-photo">
+      <div class="expe-item-content">
+        <div class="expe-nom">Hollywood Super Green</div>
+        <div class="expe-detail">Caméras, fond vert, costumes, réalisateur en régie. Vous repartez avec une vidéo de la session. Une expérience unique dans la région.</div>
+        <div class="expe-specs">Studio 1 · 10 à 19 personnes · Animé</div>
+        <div class="expe-tarif">
+          <div class="tarif-chiffre">26€</div>
+          <div class="tarif-unit">/ adulte · 45 min</div>
+        </div>
+        <div style="margin-top:1rem;font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--or);border:1px solid rgba(212,168,83,0.4);padding:0.5rem 0.8rem;display:inline-block;">Réserver →</div>
       </div>
-      <div class="acarte-tarif">
-        <div class="tarif-chiffre">26€</div>
-        <div class="tarif-unit">/ adulte · 45 min</div>
+    </div>
+    <div class="expe-item" onclick="openDrawer('karaoke')" style="cursor:pointer;">
+      <img src="images/karaoke-neon.jpg" alt="Karaoké Privé" class="expe-item-photo">
+      <div class="expe-item-content">
+        <div class="expe-nom">Karaoké Privé</div>
+        <div class="expe-detail">Studio privatisé pour votre groupe. 3 à 9 personnes dans un espace conçu pour chanter sans se retenir.</div>
+        <div class="expe-specs">Studio 3 · 3 à 9 personnes · Tout public</div>
+        <div class="expe-tarif">
+          <div class="tarif-chiffre">15€</div>
+          <div class="tarif-unit">/ pers · 1h</div>
+        </div>
+        <div style="margin-top:1rem;font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--or);border:1px solid rgba(212,168,83,0.4);padding:0.5rem 0.8rem;display:inline-block;">Réserver →</div>
       </div>
     </div>
   </div>
@@ -2447,7 +2423,7 @@
     <li><a href="https://www.lumiiastudios.fr" target="_blank">Studios Pro</a></li>
     <li><a href="#infos">Contact</a></li>
   </ul>
-  <div class="footer-copy">© 2026 I-IMMERSION SAS · lumiia.fr · v2.5.0</div>
+  <div class="footer-copy">© 2026 I-IMMERSION SAS · lumiia.fr · v2.6.0</div>
 </footer>
 
 <script>
@@ -2460,16 +2436,20 @@ function showPack(id, btn) {
 }
 
 // ─── CONFIG PRODUITS ───────────────────────────────────────────
-// Pour changer l'ID d'un produit : modifie uniquement le champ "id"
+// Pour chaque bouton : changer l'id quand les produits seront créés dans le back-office
 var PRODUITS = {
   'defoule': {
     nom: 'D\u00e9foule Room',
-    specs: 'Studio 1 \u00b7 2 \u00e0 19 personnes \u00b7 D\u00e8s 4 ans \u00b7 30 min',
-    desc: 'Zombies, lasers, boutons, moutons et champignons de Mario. 30 minutes intensives dans 70 m\u00b2 d\u2019\u00e9crans et de jeux interactifs fabriqu\u00e9s ici. Une exp\u00e9rience physique et sensorielle unique \u2014 on d\u00e9compresse vraiment.',
+    specs: 'Studio 1 \u00b7 2 \u00e0 19 personnes \u00b7 D\u00e8s 4 ans',
+    desc: 'Zombies, lasers, boutons, moutons et champignons de Mario. 30 minutes intensives dans 70\u00a0m\u00b2 d\u2019\u00e9crans et de jeux interactifs fabriqu\u00e9s ici. Une exp\u00e9rience physique et sensorielle unique.',
     prix: '9\u20ac',
-    prixLabel: '/ pers \u00b7 30 min',
+    prixLabel: '/ pers',
     img: 'images/defoule-room.jpg',
-    id: 1
+    btns: [
+      { l: '30 min', id: 1 },
+      { l: '60 min', id: 2 },
+      { l: '120 min', id: 3 }
+    ]
   },
   'enigmatic': {
     nom: 'Enigmatic Game',
@@ -2478,25 +2458,34 @@ var PRODUITS = {
     prix: '13\u20ac',
     prixLabel: '/ pers \u00b7 -12 ans offert',
     img: 'images/bar-ambiance.jpg',
-    id: 1
+    btns: [
+      { l: '45 min', id: 1 },
+      { l: '90 min', id: 2 }
+    ]
   },
   'hollywood': {
     nom: 'Hollywood Super Green',
-    specs: 'Studio 1 \u00b7 10 \u00e0 19 personnes \u00b7 Anim\u00e9 \u00b7 45 min',
-    desc: 'Cam\u00e9ras, fond vert, costumes, r\u00e9alisateur en r\u00e9gie. Vous jouez la sc\u00e8ne, on tourne. Vous repartez avec une vid\u00e9o de la session envoy\u00e9e directement sur votre t\u00e9l\u00e9phone. Une exp\u00e9rience qui n\u2019existe nulle part ailleurs dans la r\u00e9gion.',
+    specs: 'Studio 1 \u00b7 10 \u00e0 19 personnes \u00b7 Anim\u00e9',
+    desc: 'Cam\u00e9ras, fond vert, costumes, r\u00e9alisateur en r\u00e9gie. Vous jouez la sc\u00e8ne, on tourne. Vous repartez avec une vid\u00e9o de la session. Une exp\u00e9rience unique dans la r\u00e9gion.',
     prix: '26\u20ac',
-    prixLabel: '/ adulte \u00b7 45 min',
+    prixLabel: '/ adulte',
     img: 'images/bar-dj.jpg',
-    id: 1
+    btns: [
+      { l: '45 min', id: 1 }
+    ]
   },
   'karaoke': {
     nom: 'Karaok\u00e9 Priv\u00e9',
     specs: 'Studio 3 \u00b7 3 \u00e0 9 personnes \u00b7 Tout public',
     desc: 'Votre studio priv\u00e9 pour chanter sans vous retenir. Sono pro, micro, ambiance lumi\u00e8re, catalogue illimit\u00e9. Parfait pour briser la glace en EVG/EVJF ou terminer une soir\u00e9e en beaut\u00e9.',
     prix: '15\u20ac',
-    prixLabel: '/ pers \u00b7 1h',
+    prixLabel: '/ pers',
     img: 'images/karaoke-neon.jpg',
-    id: 1
+    btns: [
+      { l: '60 min', id: 1 },
+      { l: '120 min', id: 2 },
+      { l: '180 min', id: 3 }
+    ]
   }
 };
 // ───────────────────────────────────────────────────────────────
@@ -2506,6 +2495,7 @@ var BASE_URL = 'https://reservation.lumiia.fr/?id=';
 function openDrawer(key) {
   var p = PRODUITS[key];
   if (!p) return;
+
   document.getElementById('drawerImg').src = p.img;
   document.getElementById('drawerImg').alt = p.nom;
   document.getElementById('drawerNom').textContent = p.nom;
@@ -2513,7 +2503,31 @@ function openDrawer(key) {
   document.getElementById('drawerDesc').textContent = p.desc;
   document.getElementById('drawerPrix').textContent = p.prix;
   document.getElementById('drawerPrixLabel').textContent = p.prixLabel;
-  document.getElementById('drawerIframe').src = BASE_URL + p.id;
+
+  // Générer les boutons de durée
+  var btnsEl = document.getElementById('drawerBtns');
+  btnsEl.innerHTML = '';
+  var iframe = document.getElementById('drawerIframe');
+
+  if (p.btns.length > 1) {
+    p.btns.forEach(function(b, i) {
+      var btn = document.createElement('button');
+      btn.className = 'drawer-duree-btn' + (i === 0 ? ' active' : '');
+      btn.textContent = b.l;
+      btn.onclick = function() {
+        btnsEl.querySelectorAll('.drawer-duree-btn').forEach(function(x) { x.classList.remove('active'); });
+        btn.classList.add('active');
+        iframe.src = BASE_URL + b.id;
+      };
+      btnsEl.appendChild(btn);
+    });
+    btnsEl.style.display = 'flex';
+  } else {
+    btnsEl.style.display = 'none';
+  }
+
+  iframe.src = BASE_URL + p.btns[0].id;
+
   document.getElementById('drawer').classList.add('open');
   document.getElementById('drawerOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
