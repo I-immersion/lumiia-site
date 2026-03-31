@@ -489,7 +489,124 @@
     letter-spacing: 0.1em;
   }
 
-  /* ─── RESPONSIVE ─── */
+  /* ─── ONGLETS ADMIN ─── */
+  .admin-tabs {
+    background: var(--noir2);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex;
+    gap: 0;
+  }
+
+  .admin-tab {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.9rem 1.5rem;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--texte2);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .admin-tab:hover { color: var(--blanc); }
+  .admin-tab.active { color: var(--or); border-bottom-color: var(--or); }
+
+  /* ─── SECTION INSCRITS ─── */
+  .inscrits-panel {
+    padding: 2rem;
+    display: none;
+  }
+
+  .inscrits-panel.active { display: block; }
+
+  .inscrits-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .inscrits-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--or);
+  }
+
+  .inscrits-count {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--texte2);
+    letter-spacing: 0.1em;
+  }
+
+  .inscrits-export {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--texte2);
+    padding: 0.4rem 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 2px;
+  }
+
+  .inscrits-export:hover { border-color: var(--or); color: var(--or); }
+
+  .inscrits-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .inscrit-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.9rem 1.2rem;
+    background: var(--noir2);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+  }
+
+  .inscrit-evt {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--or);
+    min-width: 120px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .inscrit-nom { font-weight: 500; font-size: 0.9rem; flex: 1; }
+
+  .inscrit-contact {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.58rem;
+    color: var(--texte2);
+    letter-spacing: 0.05em;
+  }
+
+  .inscrit-date {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.5rem;
+    color: var(--texte2);
+    letter-spacing: 0.08em;
+    flex-shrink: 0;
+  }
   @media (max-width: 900px) {
     .main { grid-template-columns: 1fr; }
     .form-panel { border-right: none; border-bottom: 1px solid var(--border); }
@@ -514,12 +631,17 @@
   <header>
     <div>
       <div class="header-logo">LUMIIA · Admin</div>
-      <div class="header-sub">Gestion de l'agenda</div>
+      <div class="header-sub">Gestion de l'agenda · <span style="color:var(--or)">v2.9.0</span></div>
     </div>
     <button class="logout-btn" onclick="logout()">Déconnexion</button>
   </header>
 
-  <div class="main">
+  <div class="admin-tabs">
+    <button class="admin-tab active" onclick="switchTab('agenda', this)">Agenda</button>
+    <button class="admin-tab" onclick="switchTab('inscrits', this)">Inscrits</button>
+  </div>
+
+  <div class="main" id="tabAgenda">
 
     <!-- FORMULAIRE -->
     <div class="form-panel">
@@ -632,6 +754,20 @@
       </div>
     </div>
 
+  </div>
+</div>
+
+<!-- Panel Inscrits -->
+<div class="inscrits-panel" id="tabInscrits">
+  <div class="inscrits-header">
+    <div>
+      <div class="inscrits-title">Inscrits aux événements</div>
+      <div class="inscrits-count" id="inscritsCount">Chargement...</div>
+    </div>
+    <button class="inscrits-export" onclick="exportInscritsCSV()">↓ Exporter CSV</button>
+  </div>
+  <div class="inscrits-list" id="inscritsList">
+    <div class="empty-state">Aucun inscrit pour le moment.</div>
   </div>
 </div>
 
@@ -944,6 +1080,10 @@ function renderList() {
     const jourSem = JOURS_FR[d.getDay()];
     const isPasse = e.date < today;
 
+    const imgHtml = e.imgUrl
+      ? `<img src="${e.imgUrl}" style="width:48px;height:48px;object-fit:cover;border-radius:2px;flex-shrink:0;opacity:0.85;" alt="">`
+      : `<div style="width:48px;height:48px;background:var(--noir3);border-radius:2px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.2rem;">🎵</div>`;
+
     return `
     <div class="event-card" style="${isPasse ? 'opacity:0.5' : ''}">
       <div class="event-date-badge">
@@ -959,6 +1099,7 @@ function renderList() {
           ${e.resa ? `<span class="badge badge-resa">Réservation</span>` : ''}
         </div>
       </div>
+      ${imgHtml}
       <div class="event-actions">
         <button class="action-btn edit" onclick="editEvent('${e.id}')">Modifier</button>
         <button class="action-btn del" onclick="deleteEvent('${e.id}', '${(e.titre || '').replace(/'/g, "\\'")}')">Suppr.</button>
@@ -966,6 +1107,68 @@ function renderList() {
     </div>`;
   }).join('');
 }
+
+// ─── ONGLETS ──────────────────────────────────────────────────
+window.switchTab = function(tab, btn) {
+  document.querySelectorAll('.admin-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tabAgenda').style.display = tab === 'agenda' ? 'grid' : 'none';
+  document.getElementById('tabInscrits').style.display = tab === 'inscrits' ? 'block' : 'none';
+  if (tab === 'inscrits') renderInscrits();
+};
+
+// ─── INSCRITS ─────────────────────────────────────────────────
+function renderInscrits() {
+  const container = document.getElementById('inscritsList');
+  const countEl = document.getElementById('inscritsCount');
+
+  // Lire depuis Firebase /agenda/inscrits
+  const inscritsRef = ref(db, 'agenda/inscrits');
+  onValue(inscritsRef, snap => {
+    const data = snap.val() || {};
+    const entries = Object.entries(data).map(([id, v]) => ({ id, ...v }))
+      .sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+
+    countEl.textContent = entries.length + ' inscrit' + (entries.length > 1 ? 's' : '');
+
+    if (entries.length === 0) {
+      container.innerHTML = '<div class="empty-state">Aucun inscrit pour le moment.</div>';
+      return;
+    }
+
+    const MOIS = ['Jan','Fév','Mar','Avr','Mai','Jun','Jul','Aoû','Sep','Oct','Nov','Déc'];
+
+    container.innerHTML = entries.map(e => {
+      const d = e.createdAt ? new Date(e.createdAt) : null;
+      const dateStr = d ? `${d.getDate()} ${MOIS[d.getMonth()]} ${d.getFullYear()}` : '';
+      return `
+      <div class="inscrit-row">
+        <div class="inscrit-evt">${e.evtTitre || '—'}</div>
+        <div class="inscrit-nom">${e.nom || ''} ${e.prenom || ''}</div>
+        <div class="inscrit-contact">${e.email || ''} ${e.tel ? '· ' + e.tel : ''}</div>
+        <div class="inscrit-date">${dateStr}</div>
+      </div>`;
+    }).join('');
+  }, { onlyOnce: true });
+}
+
+window.exportInscritsCSV = function() {
+  const inscritsRef = ref(db, 'agenda/inscrits');
+  onValue(inscritsRef, snap => {
+    const data = snap.val() || {};
+    const entries = Object.values(data);
+    if (entries.length === 0) { alert('Aucun inscrit à exporter.'); return; }
+    const header = 'Événement,Nom,Prénom,Email,Téléphone,Date inscription\n';
+    const rows = entries.map(e => {
+      const d = e.createdAt ? new Date(e.createdAt).toLocaleDateString('fr-FR') : '';
+      return `"${e.evtTitre || ''}","${e.nom || ''}","${e.prenom || ''}","${e.email || ''}","${e.tel || ''}","${d}"`;
+    }).join('\n');
+    const blob = new Blob([header + rows], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'inscrits-lumiia.csv'; a.click();
+  }, { onlyOnce: true });
+};
 </script>
 
 </body>
