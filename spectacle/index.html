@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le spectacle immersif été 2026 · LUMIIA</title>
+<meta name="description" content="Spectacle immersif inaugural été 2026 — décors numériques, personnages animés, énigmes collectives. Familles et groupes, 50 à 100 personnes par session.">
+
+<link rel="stylesheet" href="/lumiia-site/css/styles.css">
+
+<style>
+  /* ─── Spectacle page-specific ─── */
+  .page-hero {
+    position: relative;
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--s-9) var(--page-pad);
+    overflow: hidden;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .page-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 80% at 70% 30%, var(--lime-tint), transparent 60%),
+      radial-gradient(ellipse 100% 80% at 30% 80%, var(--studios-tint), transparent 70%),
+      radial-gradient(ellipse 60% 50% at 90% 90%, var(--bar-tint), transparent 70%);
+    pointer-events: none;
+  }
+  .page-hero-inner { max-width: 1100px; margin: 0 auto; width: 100%; position: relative; z-index: 1; }
+  .page-hero-tag { margin-bottom: var(--s-5); display: inline-flex; }
+  .page-hero-title {
+    font-family: var(--ff-brand);
+    font-size: var(--fs-hero);
+    font-weight: var(--fw-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    line-height: 0.95;
+    margin-bottom: var(--s-5);
+  }
+  .page-hero-title em {
+    font-style: normal;
+    color: var(--lime);
+    text-shadow: var(--glow-lime);
+  }
+  .page-hero-sub { max-width: 640px; font-size: var(--fs-lead); margin-bottom: var(--s-7); }
+
+  .page-hero-cta {
+    display: inline-flex;
+    gap: var(--s-3);
+    flex-wrap: wrap;
+  }
+
+  /* ─── Format facts ─── */
+  .facts-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--s-4);
+  }
+  .fact {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--r-md);
+    padding: var(--s-5);
+    text-align: center;
+  }
+  .fact-label {
+    font-size: var(--fs-micro);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: var(--s-3);
+  }
+  .fact-value {
+    font-family: var(--ff-brand);
+    font-size: 1.6rem;
+    color: var(--ink);
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  /* ─── Concept ─── */
+  .concept-grid {
+    display: grid;
+    grid-template-columns: 5fr 4fr;
+    gap: var(--s-8);
+    align-items: center;
+  }
+  .concept-text p { margin-bottom: var(--s-4); color: var(--ink-soft); }
+  .concept-text p:first-of-type { font-size: var(--fs-lead); color: var(--ink); }
+
+  .concept-visual {
+    aspect-ratio: 4/5;
+    border-radius: var(--r-lg);
+    background:
+      radial-gradient(ellipse 60% 60% at 50% 30%, var(--lime), transparent 65%),
+      radial-gradient(ellipse 80% 50% at 30% 80%, var(--studios), transparent 70%),
+      radial-gradient(ellipse 40% 30% at 80% 60%, var(--bar), transparent 70%),
+      var(--cosmos-3);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .concept-visual::after {
+    content: 'visuel à venir';
+    position: absolute;
+    bottom: var(--s-4);
+    left: var(--s-4);
+    font-family: var(--ff-body);
+    font-size: var(--fs-micro);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+  }
+
+  /* ─── Pour qui ─── */
+  .pourqui-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--s-4);
+  }
+  .pourqui-card {
+    padding: var(--s-6);
+    border-radius: var(--r-md);
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .pourqui-card h3 {
+    font-family: var(--ff-brand);
+    font-size: 1.3rem;
+    color: var(--ink);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: var(--s-3);
+  }
+  .pourqui-card p { font-size: var(--fs-small); color: var(--ink-soft); }
+
+  /* ─── Résa ─── */
+  .resa-section {
+    background: var(--cosmos-2);
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .resa-iframe-placeholder {
+    background: rgba(255,255,255,0.02);
+    border: 2px dashed rgba(184,255,60,0.4);
+    border-radius: var(--r-lg);
+    padding: var(--s-9) var(--s-6);
+    text-align: center;
+    margin-bottom: var(--s-5);
+  }
+  .resa-iframe-placeholder .micro { display: block; color: var(--lime); margin-bottom: var(--s-3); }
+  .resa-iframe-placeholder p { color: var(--ink-soft); margin-bottom: var(--s-5); }
+
+  @media (max-width: 900px) {
+    .facts-grid { grid-template-columns: 1fr 1fr; }
+    .concept-grid { grid-template-columns: 1fr; gap: var(--s-6); }
+    .pourqui-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div data-partial="header"></div>
+
+<!-- ─── HERO ─── -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <span class="page-hero-tag tag tag-lime" data-i18n="spectacle.hero.tag">Saison Été 2026 · Inaugural</span>
+    <h1 class="page-hero-title" data-i18n="spectacle.hero.title">Le grand spectacle <em data-i18n="spectacle.hero.title_em">immersif</em></h1>
+    <p class="page-hero-sub lead" data-i18n="spectacle.hero.sub">Une aventure de lumière et de sons, entièrement fabriquée dans nos studios. Vous ne regardez pas le spectacle — vous y entrez.</p>
+    <div class="page-hero-cta">
+      <a href="#resa" class="btn btn-primary" data-i18n="cta.reserver">Réserver</a>
+      <a href="#concept" class="btn">En savoir plus</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FORMAT (4 facts) ─── -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <span class="micro" data-i18n="spectacle.format.kicker">Le format</span>
+      <h2 data-i18n="spectacle.format.title">Comment ça se passe</h2>
+    </div>
+
+    <div class="facts-grid">
+      <div class="fact">
+        <div class="fact-label" data-i18n="spectacle.format.duree_label">Durée</div>
+        <div class="fact-value" data-i18n="spectacle.format.duree_value">Environ 1h</div>
+      </div>
+      <div class="fact">
+        <div class="fact-label" data-i18n="spectacle.format.jauge_label">Jauge</div>
+        <div class="fact-value" data-i18n="spectacle.format.jauge_value">50 à 100 personnes</div>
+      </div>
+      <div class="fact">
+        <div class="fact-label" data-i18n="spectacle.format.age_label">À partir de</div>
+        <div class="fact-value" data-i18n="spectacle.format.age_value">6 ans · familial</div>
+      </div>
+      <div class="fact">
+        <div class="fact-label" data-i18n="spectacle.format.sessions_label">Sessions</div>
+        <div class="fact-value" data-i18n="spectacle.format.sessions_value">Plusieurs/sem · sur résa</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CONCEPT ─── -->
+<section id="concept">
+  <div class="container">
+    <div class="section-head">
+      <span class="micro" data-i18n="spectacle.concept.kicker">Le concept</span>
+      <h2 data-i18n="spectacle.concept.title">Une histoire qu'on traverse <em class="gradient">ensemble</em></h2>
+    </div>
+
+    <div class="concept-grid">
+      <div class="concept-text">
+        <p data-i18n="spectacle.concept.intro">Pas un spectacle qu'on regarde assis. Un univers qu'on parcourt — décors numériques projetés, personnages animés, énigmes que le groupe résout ensemble. Une narration qui vous emmène d'un espace à un autre.</p>
+        <p data-i18n="spectacle.concept.p1">Conçu et fabriqué dans nos studios LUMIIA. Pas une franchise, pas un concept importé. Chaque scène, chaque effet sonore, chaque surprise est née ici.</p>
+        <p data-i18n="spectacle.concept.p2">Pour cet été inaugural, le spectacle s'adresse aux familles, aux groupes en vacances, aux scolaires hors période. Un format pensé pour qu'enfants et adultes y trouvent leur compte ensemble.</p>
+      </div>
+      <div class="concept-visual" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── POUR QUI ─── -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <span class="micro" data-i18n="spectacle.pourqui.kicker">Pour qui</span>
+      <h2 data-i18n="spectacle.pourqui.title">Trois publics</h2>
+    </div>
+
+    <div class="pourqui-grid">
+      <div class="pourqui-card">
+        <h3 data-i18n="spectacle.pourqui.famille_title">Familles en vacances</h3>
+        <p data-i18n="spectacle.pourqui.famille_desc">Pour les enfants de 6 ans et plus. Les parents y trouvent leur compte autant que les enfants.</p>
+      </div>
+      <div class="pourqui-card">
+        <h3 data-i18n="spectacle.pourqui.groupes_title">Groupes d'amis</h3>
+        <p data-i18n="spectacle.pourqui.groupes_desc">Plus on est nombreux, plus on rit. Idéal en escapade week-end avant la soirée au bar.</p>
+      </div>
+      <div class="pourqui-card">
+        <h3 data-i18n="spectacle.pourqui.scolaires_title">Sorties scolaires</h3>
+        <p data-i18n="spectacle.pourqui.scolaires_desc">Hors saison, créneaux dédiés aux groupes scolaires. Pédagogique et fun. Sur demande.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── RÉSERVATION ─── -->
+<section id="resa" class="resa-section">
+  <div class="container">
+    <div class="section-head">
+      <span class="micro" data-i18n="spectacle.resa.kicker">Réservation</span>
+      <h2 data-i18n="spectacle.resa.title">Sessions ouvertes selon la <em class="gradient">demande</em></h2>
+      <p class="lead" data-i18n="spectacle.resa.intro">Pas d'horaires fixes — les créneaux s'ouvrent en fonction des réservations en cours. Plus vous réservez tôt, plus vous avez de choix.</p>
+    </div>
+
+    <div class="resa-iframe-placeholder">
+      <span class="micro" data-i18n="spectacle.resa.iframe_placeholder">Module de réservation Nico — à intégrer ici</span>
+      <p data-i18n="spectacle.resa.fallback_text">Réservation en cours d'intégration. En attendant, contactez-nous directement :</p>
+      <a href="tel:+33475000000" class="btn btn-primary" data-i18n="spectacle.resa.contact_btn">Réserver par téléphone</a>
+    </div>
+  </div>
+</section>
+
+<div data-partial="footer"></div>
+
+<script src="/lumiia-site/js/i18n.js"></script>
+<script src="/lumiia-site/js/partials.js"></script>
+</body>
+</html>

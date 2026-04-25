@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Groupes __TITLE__ événements · LUMIIA</title>
+<link rel="stylesheet" href="/lumiia-site/css/styles.css">
+<style>
+  .stub-page {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--s-9) var(--page-pad);
+    text-align: center;
+  }
+  .stub-page::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 60% at 50% 30%, var(--studios-tint), transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .stub-page-inner {
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .stub-tag { margin-bottom: var(--s-5); display: inline-flex; }
+  .stub-title {
+    font-family: var(--ff-brand);
+    font-size: var(--fs-h1);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    margin-bottom: var(--s-4);
+    line-height: 1;
+  }
+  .stub-intro { color: var(--ink-soft); margin-bottom: var(--s-7); font-size: var(--fs-lead); }
+</style>
+</head>
+<body>
+
+<div data-partial="header"></div>
+
+<section class="stub-page">
+  <div class="stub-page-inner">
+    <span class="stub-tag tag tag-studios">En construction</span>
+    <h1 class="stub-title">Groupes __TITLE__ événements</h1>
+    <p class="stub-intro" data-i18n="stub.intro">Cette page fait partie du chantier multi-pages en cours (v2.9). Elle sera complète prochainement.</p>
+    <a href="/lumiia-site/" class="btn btn-primary" data-i18n="stub.back">Retour à l'accueil</a>
+  </div>
+</section>
+
+<div data-partial="footer"></div>
+
+<script src="/lumiia-site/js/i18n.js"></script>
+<script src="/lumiia-site/js/partials.js"></script>
+</body>
+</html>

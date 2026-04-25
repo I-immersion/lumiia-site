@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LUMIIA — Mockup home été 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono:wght@400;700&display=swap');
+
+  :root {
+    --noir: #0a0a0a;
+    --noir2: #111111;
+    --noir3: #161616;
+    --noir4: #1c1c1c;
+    --blanc: #f0ece3;
+    --or: #d4a853;
+    --or2: #f0c060;
+    --or-soft: rgba(212, 168, 83, 0.15);
+    --rose: #e8455a;
+    --violet: #7b4fa6;
+    --cyan: #3ab8c8;
+    --gris: #2a2a2a;
+    --gris2: #1a1a1a;
+    --texte: #c8c0b0;
+    --texte2: #7a7268;
+    --bord: rgba(212, 168, 83, 0.2);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--noir);
+    color: var(--texte);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ─── HEADER STICKY ─── */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10, 10, 10, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--bord);
+  }
+  .nav-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 16px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    letter-spacing: 4px;
+    color: var(--or);
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+    flex: 1;
+    justify-content: center;
+  }
+  .nav-links a {
+    color: var(--texte);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--or2); }
+  .nav-cta {
+    position: relative;
+  }
+  .nav-cta-btn {
+    background: var(--or);
+    color: var(--noir);
+    padding: 10px 22px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: background 0.2s;
+  }
+  .nav-cta-btn:hover { background: var(--or2); }
+  .nav-cta:hover .nav-cta-menu { display: block; }
+  .nav-cta-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 8px;
+    background: var(--noir3);
+    border: 1px solid var(--bord);
+    min-width: 240px;
+  }
+  .nav-cta-menu a {
+    display: block;
+    padding: 14px 20px;
+    color: var(--texte);
+    text-decoration: none;
+    font-size: 14px;
+    border-bottom: 1px solid var(--gris2);
+  }
+  .nav-cta-menu a:last-child { border-bottom: none; }
+  .nav-cta-menu a:hover { background: var(--noir4); color: var(--or2); }
+
+  /* ─── BANDEAU SAISON ─── */
+  .saison {
+    background: var(--or-soft);
+    border-bottom: 1px solid var(--bord);
+    padding: 10px 32px;
+    text-align: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--or);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .saison span { color: var(--texte); margin: 0 16px; }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 32px;
+    background: linear-gradient(180deg, var(--noir) 0%, var(--noir3) 100%);
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(123, 79, 166, 0.18), transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(58, 184, 200, 0.12), transparent 55%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+  }
+  .hero-loc {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--or);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(56px, 9vw, 128px);
+    color: var(--blanc);
+    line-height: 0.95;
+    letter-spacing: 2px;
+    margin-bottom: 24px;
+  }
+  .hero-title em {
+    font-style: italic;
+    font-family: 'DM Sans', serif;
+    font-weight: 300;
+    color: var(--or);
+  }
+  .hero-sub {
+    font-size: 19px;
+    color: var(--texte);
+    max-width: 600px;
+    margin-bottom: 48px;
+  }
+  .hero-resa {
+    background: rgba(28, 28, 28, 0.7);
+    border: 1px solid var(--bord);
+    padding: 28px;
+    max-width: 720px;
+    backdrop-filter: blur(8px);
+  }
+  .hero-resa-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--or);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .hero-resa-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .hero-resa-btn {
+    background: transparent;
+    border: 1px solid var(--bord);
+    color: var(--blanc);
+    padding: 18px 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+    text-decoration: none;
+  }
+  .hero-resa-btn:hover {
+    background: var(--or-soft);
+    border-color: var(--or);
+  }
+  .hero-resa-btn-icon {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    color: var(--or);
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+  }
+  .hero-resa-btn-label {
+    font-size: 13px;
+    color: var(--texte);
+  }
+
+  /* ─── SECTIONS GÉNÉRIQUES ─── */
+  section {
+    padding: 100px 32px;
+    position: relative;
+  }
+  .section-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--or);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(40px, 6vw, 72px);
+    color: var(--blanc);
+    line-height: 1;
+    letter-spacing: 1.5px;
+    margin-bottom: 24px;
+    max-width: 900px;
+  }
+  .section-title em {
+    font-style: italic;
+    font-family: 'DM Sans', serif;
+    font-weight: 300;
+    color: var(--or);
+  }
+  .section-intro {
+    font-size: 18px;
+    color: var(--texte);
+    max-width: 700px;
+    margin-bottom: 56px;
+  }
+
+  /* ─── 3 UNIVERS ─── */
+  .univers {
+    background: var(--noir2);
+  }
+  .univers-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .univers-card {
+    background: var(--noir3);
+    border: 1px solid var(--bord);
+    padding: 0;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .univers-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--or);
+  }
+  .univers-photo {
+    aspect-ratio: 4/3;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+  }
+  .univers-card[data-univers="spectacle"] .univers-photo {
+    background: linear-gradient(135deg, var(--violet), #4a2d6b);
+  }
+  .univers-card[data-univers="experiences"] .univers-photo {
+    background: linear-gradient(135deg, var(--or), var(--rose));
+  }
+  .univers-card[data-univers="bar"] .univers-photo {
+    background: linear-gradient(135deg, var(--cyan), #1d6671);
+  }
+  .univers-photo::before {
+    content: attr(data-num);
+    position: absolute;
+    top: 20px;
+    left: 24px;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 2px;
+  }
+  .univers-content {
+    padding: 32px 28px;
+  }
+  .univers-card[data-univers="spectacle"] .univers-tag { color: var(--violet); }
+  .univers-card[data-univers="experiences"] .univers-tag { color: var(--or); }
+  .univers-card[data-univers="bar"] .univers-tag { color: var(--cyan); }
+  .univers-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .univers-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    color: var(--blanc);
+    letter-spacing: 1.5px;
+    margin-bottom: 16px;
+    line-height: 1;
+  }
+  .univers-desc {
+    font-size: 14px;
+    color: var(--texte);
+    margin-bottom: 24px;
+    min-height: 84px;
+  }
+  .univers-link {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--or);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* ─── PROFILS ─── */
+  .profils {
+    background: var(--noir);
+  }
+  .profils-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .profil-card {
+    background: var(--noir3);
+    border-left: 3px solid var(--or);
+    padding: 28px;
+    cursor: pointer;
+    transition: background 0.2s;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .profil-card:hover { background: var(--noir4); }
+  .profil-card[data-profil="potes"] { border-left-color: var(--cyan); }
+  .profil-card[data-profil="evt"] { border-left-color: var(--rose); }
+  .profil-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--or);
+    letter-spacing: 2px;
+    margin-bottom: 14px;
+  }
+  .profil-card[data-profil="potes"] .profil-num { color: var(--cyan); }
+  .profil-card[data-profil="evt"] .profil-num { color: var(--rose); }
+  .profil-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    color: var(--blanc);
+    letter-spacing: 1px;
+    line-height: 1.1;
+    margin-bottom: 10px;
+  }
+  .profil-desc {
+    font-size: 13px;
+    color: var(--texte);
+    margin-bottom: 18px;
+  }
+  .profil-arrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--or);
+    letter-spacing: 2px;
+  }
+
+  /* ─── COMPOSEZ ─── */
+  .compose {
+    background: var(--noir2);
+  }
+  .compose-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .compose-card {
+    background: var(--noir);
+    border: 1px solid var(--bord);
+    padding: 32px 28px;
+    position: relative;
+  }
+  .compose-tag {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--or);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid var(--bord);
+    margin-bottom: 18px;
+  }
+  .compose-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--blanc);
+    letter-spacing: 1px;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .compose-list {
+    list-style: none;
+    margin-bottom: 24px;
+  }
+  .compose-list li {
+    font-size: 13px;
+    color: var(--texte);
+    padding: 8px 0;
+    border-bottom: 1px solid var(--gris2);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .compose-list li::before {
+    content: '+';
+    color: var(--or);
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+  }
+  .compose-list li:first-child::before { content: '→'; }
+  .compose-list li:last-child { border-bottom: none; }
+  .compose-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+  }
+  .compose-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--or);
+    letter-spacing: 1px;
+  }
+  .compose-duration {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--texte2);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .compose-cta {
+    display: block;
+    background: transparent;
+    border: 1px solid var(--or);
+    color: var(--or);
+    padding: 12px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: all 0.2s;
+  }
+  .compose-cta:hover {
+    background: var(--or);
+    color: var(--noir);
+  }
+
+  /* ─── BANDEAU 1ER ÉTAGE ─── */
+  .etage {
+    background: var(--noir);
+    padding: 60px 32px;
+  }
+  .etage-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 40px;
+    align-items: center;
+    background: var(--noir3);
+    border: 1px dashed var(--bord);
+    padding: 40px;
+  }
+  .etage-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--or);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .etage-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 38px;
+    color: var(--blanc);
+    line-height: 1;
+    letter-spacing: 1.5px;
+  }
+  .etage-desc {
+    font-size: 14px;
+    color: var(--texte);
+  }
+
+  /* ─── AGENDA ─── */
+  .agenda {
+    background: var(--noir2);
+  }
+  .agenda-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .agenda-event {
+    background: var(--noir3);
+    border: 1px solid var(--bord);
+    padding: 24px;
+  }
+  .agenda-date {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    color: var(--or);
+    letter-spacing: 1px;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .agenda-month {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--texte2);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .agenda-title {
+    font-size: 14px;
+    color: var(--blanc);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .agenda-time {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--texte2);
+    letter-spacing: 1.5px;
+  }
+  .agenda-cta {
+    margin-top: 32px;
+    text-align: center;
+  }
+  .agenda-cta a {
+    color: var(--or);
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-bottom: 1px solid var(--or);
+    padding-bottom: 4px;
+  }
+
+  /* ─── PRATIQUE ─── */
+  .pratique {
+    background: var(--noir);
+    padding: 48px 32px;
+    border-top: 1px solid var(--bord);
+    border-bottom: 1px solid var(--bord);
+  }
+  .pratique-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 24px;
+  }
+  .pratique-item {
+    text-align: center;
+  }
+  .pratique-icon {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--or);
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .pratique-label {
+    font-size: 12px;
+    color: var(--texte);
+    line-height: 1.4;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--noir2);
+    padding: 64px 32px 32px;
+  }
+  .footer-grid {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 48px;
+  }
+  .footer-brand h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    color: var(--or);
+    letter-spacing: 4px;
+    margin-bottom: 16px;
+  }
+  .footer-brand p {
+    font-size: 14px;
+    color: var(--texte);
+    margin-bottom: 8px;
+  }
+  .footer-col h4 {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--or);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 10px; }
+  .footer-col ul li a {
+    color: var(--texte);
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.2s;
+  }
+  .footer-col ul li a:hover { color: var(--or2); }
+  .footer-langs {
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
+  }
+  .footer-langs span {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--texte2);
+    letter-spacing: 1.5px;
+    padding: 4px 8px;
+    border: 1px solid var(--gris);
+  }
+  .footer-langs span.active { color: var(--or); border-color: var(--or); }
+  .footer-bottom {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding-top: 32px;
+    border-top: 1px solid var(--gris2);
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--texte2);
+  }
+
+  /* ─── ANNOTATIONS MOCKUP ─── */
+  .mockup-note {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    background: rgba(212, 168, 83, 0.95);
+    color: var(--noir);
+    padding: 8px 14px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    z-index: 200;
+    text-transform: uppercase;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .hero-resa-buttons { grid-template-columns: 1fr; }
+    .univers-grid, .profils-grid, .compose-grid { grid-template-columns: 1fr; }
+    .agenda-list { grid-template-columns: 1fr 1fr; }
+    .pratique-grid { grid-template-columns: 1fr 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .etage-inner { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── HEADER STICKY ─── -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">LUMIIA</a>
+    <ul class="nav-links">
+      <li><a href="/spectacle">Spectacle</a></li>
+      <li><a href="/experiences">Expériences</a></li>
+      <li><a href="/bar">Bar</a></li>
+      <li><a href="/groupes">Groupes</a></li>
+      <li><a href="/agenda">Agenda</a></li>
+      <li><a href="/infos">Infos</a></li>
+    </ul>
+    <div class="nav-cta">
+      <button class="nav-cta-btn">Réserver</button>
+      <div class="nav-cta-menu">
+        <a href="#resa-spectacle">Le spectacle</a>
+        <a href="#resa-exp">Une expérience</a>
+        <a href="#resa-table">Une table au bar</a>
+        <a href="#resa-groupe">Un événement de groupe</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ─── BANDEAU SAISON ─── -->
+<div class="saison">
+  Été 2026 <span>·</span> Spectacle inaugural <span>·</span> Combos famille <span>·</span> Bar climatisé
+</div>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-loc">Aouste-sur-Sye · Drôme · Vallée de la Drôme</div>
+    <h1 class="hero-title">Lieu d'expériences <em>immersives</em></h1>
+    <p class="hero-sub">Bar, jeux, spectacles. Trois univers fabriqués sur place — à vivre seul, en famille ou en groupe, le temps d'une soirée ou d'un week-end.</p>
+
+    <div class="hero-resa">
+      <div class="hero-resa-label">Que voulez-vous faire ?</div>
+      <div class="hero-resa-buttons">
+        <a href="#resa-spectacle" class="hero-resa-btn">
+          <div class="hero-resa-btn-icon">SPECTACLE</div>
+          <div class="hero-resa-btn-label">Réserver une session</div>
+        </a>
+        <a href="#resa-exp" class="hero-resa-btn">
+          <div class="hero-resa-btn-icon">EXPÉRIENCE</div>
+          <div class="hero-resa-btn-label">Choisir un jeu</div>
+        </a>
+        <a href="#resa-table" class="hero-resa-btn">
+          <div class="hero-resa-btn-icon">TABLE</div>
+          <div class="hero-resa-btn-label">Boire un verre</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 3 UNIVERS ─── -->
+<section class="univers">
+  <div class="section-inner">
+    <div class="section-label">Trois univers, un seul lieu</div>
+    <h2 class="section-title">Choisissez <em>votre porte d'entrée</em></h2>
+    <p class="section-intro">Chaque univers a sa propre ambiance, ses propres horaires, son propre rythme. Vous pouvez en vivre un seul — ou les enchaîner sur une même soirée.</p>
+
+    <div class="univers-grid">
+      <a href="/spectacle" class="univers-card" data-univers="spectacle">
+        <div class="univers-photo" data-num="01"></div>
+        <div class="univers-content">
+          <div class="univers-tag">Saison été 2026</div>
+          <h3 class="univers-title">Le spectacle</h3>
+          <p class="univers-desc">Une aventure immersive — décors numériques, personnages animés, énigmes collectives. Pour 50 à 100 personnes, plusieurs sessions par semaine.</p>
+          <div class="univers-link">Découvrir & réserver →</div>
+        </div>
+      </a>
+
+      <a href="/experiences" class="univers-card" data-univers="experiences">
+        <div class="univers-photo" data-num="02"></div>
+        <div class="univers-content">
+          <div class="univers-tag">À la carte</div>
+          <h3 class="univers-title">Les expériences</h3>
+          <p class="univers-desc">Défoule Room, Hollywood Super Green, Karaoké privé, Enigmatic Game. Des jeux à vivre en groupe ou en famille, dès 30 minutes.</p>
+          <div class="univers-link">Voir les expériences →</div>
+        </div>
+      </a>
+
+      <a href="/bar" class="univers-card" data-univers="bar">
+        <div class="univers-photo" data-num="03"></div>
+        <div class="univers-content">
+          <div class="univers-tag">18h — minuit</div>
+          <h3 class="univers-title">Le bar immersif</h3>
+          <p class="univers-desc">Cabinet de curiosités vivant. Sculpture mappée 5m, cocktails maison, finger food. Climatisé. La pause idéale après une journée dehors.</p>
+          <div class="univers-link">L'ambiance du bar →</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PROFILS — Vous venez avec qui ? ─── -->
+<section class="profils">
+  <div class="section-inner">
+    <div class="section-label">Vous venez avec qui ?</div>
+    <h2 class="section-title">On vous a <em>préparé</em> trois entrées.</h2>
+
+    <div class="profils-grid">
+      <a href="/groupes#famille" class="profil-card">
+        <div class="profil-num">01 — En vacances</div>
+        <h3 class="profil-title">En famille, en camping dans la Drôme</h3>
+        <p class="profil-desc">Activités enfants, spectacle familial, bar climatisé. Plusieurs visites possibles sur votre séjour, à des moments différents.</p>
+        <div class="profil-arrow">Voir l'offre famille →</div>
+      </a>
+
+      <a href="/escapade" class="profil-card" data-profil="potes">
+        <div class="profil-num">02 — Escapade week-end</div>
+        <h3 class="profil-title">Avec des potes, à moins d'une heure</h3>
+        <p class="profil-desc">LUMIIA + canoë sur la Drôme, tour de Crest, gîte partenaire. Composez votre week-end, restez la nuit, profitez sans rentrer.</p>
+        <div class="profil-arrow">Composer un week-end →</div>
+      </a>
+
+      <a href="/groupes" class="profil-card" data-profil="evt">
+        <div class="profil-num">03 — Événement</div>
+        <h3 class="profil-title">Anniv, EVG / EVJF, team building</h3>
+        <p class="profil-desc">Packs clés en main pour groupes de 10 à 50 personnes. Privatisation possible. Brochure téléchargeable.</p>
+        <div class="profil-arrow">Voir les packs →</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── COMPOSEZ VOTRE SOIRÉE OU VOTRE WEEK-END ─── -->
+<section class="compose">
+  <div class="section-inner">
+    <div class="section-label">Combos · Tout est packagé</div>
+    <h2 class="section-title">Composez votre soirée<br>— ou votre <em>week-end complet</em>.</h2>
+    <p class="section-intro">On a préparé les combinaisons qui marchent. Une activité plus un apéro, un spectacle plus un verre, ou un week-end entier dans la vallée. Réservation en un clic.</p>
+
+    <div class="compose-grid">
+      <div class="compose-card">
+        <div class="compose-tag">Soirée chez LUMIIA</div>
+        <h3 class="compose-title">Le spectacle, plus un verre</h3>
+        <ul class="compose-list">
+          <li>1 session de spectacle</li>
+          <li>1 cocktail ou softs au bar</li>
+          <li>Accès libre à l'ambiance bar</li>
+        </ul>
+        <div class="compose-meta">
+          <div class="compose-price">à partir de 32€</div>
+          <div class="compose-duration">2h · dès 18h</div>
+        </div>
+        <a href="#" class="compose-cta">Réserver ce combo</a>
+      </div>
+
+      <div class="compose-card">
+        <div class="compose-tag">Demi-journée famille</div>
+        <h3 class="compose-title">Une expérience, un apéro</h3>
+        <ul class="compose-list">
+          <li>1 expérience au choix (30–45 min)</li>
+          <li>Apéro tapas pour la famille</li>
+          <li>Avant ou après le dîner</li>
+        </ul>
+        <div class="compose-meta">
+          <div class="compose-price">à partir de 24€/pers</div>
+          <div class="compose-duration">1h30 · 18h–20h</div>
+        </div>
+        <a href="#" class="compose-cta">Réserver ce combo</a>
+      </div>
+
+      <div class="compose-card" style="border-color: var(--cyan);">
+        <div class="compose-tag" style="border-color: var(--cyan); color: var(--cyan);">Week-end Drôme</div>
+        <h3 class="compose-title">LUMIIA + canoë + nuit en gîte</h3>
+        <ul class="compose-list">
+          <li>Canoë sur la Drôme (partenaire)</li>
+          <li>Spectacle ou expérience LUMIIA</li>
+          <li>Soirée au bar</li>
+          <li>Nuit en gîte partenaire</li>
+        </ul>
+        <div class="compose-meta">
+          <div class="compose-price">sur devis</div>
+          <div class="compose-duration">2 jours · 4 à 8 pers</div>
+        </div>
+        <a href="#" class="compose-cta" style="border-color: var(--cyan); color: var(--cyan);">Demander un devis</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── BANDEAU 1ER ÉTAGE À VENIR ─── -->
+<section class="etage">
+  <div class="etage-inner">
+    <div>
+      <div class="etage-tag">Bientôt — 560 m²</div>
+      <h3 class="etage-title">Un étage entier d'expériences,<br>en préparation.</h3>
+    </div>
+    <p class="etage-desc">Salle de spectacle 100 places, roller disco, laser game, escape game, quiz room, bar/snack ouvert dès 15h. Ouverture progressive — on vous préviendra dès que les premières activités sont accessibles.</p>
+  </div>
+</section>
+
+<!-- ─── AGENDA COMPACT ─── -->
+<section class="agenda">
+  <div class="section-inner">
+    <div class="section-label">Cette semaine</div>
+    <h2 class="section-title">Au <em>programme</em></h2>
+
+    <div class="agenda-list">
+      <div class="agenda-event">
+        <div class="agenda-date">25</div>
+        <div class="agenda-month">Avr · samedi</div>
+        <div class="agenda-title">Soirée DJ électro</div>
+        <div class="agenda-time">22h — 02h · au bar</div>
+      </div>
+      <div class="agenda-event">
+        <div class="agenda-date">26</div>
+        <div class="agenda-month">Avr · dimanche</div>
+        <div class="agenda-title">Blind test géant</div>
+        <div class="agenda-time">19h — 22h · au bar</div>
+      </div>
+      <div class="agenda-event">
+        <div class="agenda-date">02</div>
+        <div class="agenda-month">Mai · samedi</div>
+        <div class="agenda-title">Spectacle — session test</div>
+        <div class="agenda-time">18h · sur réservation</div>
+      </div>
+      <div class="agenda-event">
+        <div class="agenda-date">07</div>
+        <div class="agenda-month">Mai · jeudi</div>
+        <div class="agenda-title">Afterwork & happy hour</div>
+        <div class="agenda-time">18h — 22h · au bar</div>
+      </div>
+    </div>
+
+    <div class="agenda-cta">
+      <a href="/agenda">Voir l'agenda complet</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── BANDEAU PRATIQUE ─── -->
+<section class="pratique">
+  <div class="pratique-grid">
+    <div class="pratique-item">
+      <div class="pratique-icon">JEU — DIM</div>
+      <div class="pratique-label">18h — minuit<br><span style="color:var(--texte2); font-size:11px">vacances : 15h+</span></div>
+    </div>
+    <div class="pratique-item">
+      <div class="pratique-icon">PARKING</div>
+      <div class="pratique-label">Gratuit · 50 places<br><span style="color:var(--texte2); font-size:11px">à 100m</span></div>
+    </div>
+    <div class="pratique-item">
+      <div class="pratique-icon">FR · EN · NL</div>
+      <div class="pratique-label">Équipe multilingue<br><span style="color:var(--texte2); font-size:11px">all summer long</span></div>
+    </div>
+    <div class="pratique-item">
+      <div class="pratique-icon">CB · ESPÈCES</div>
+      <div class="pratique-label">Tous moyens<br><span style="color:var(--texte2); font-size:11px">ANCV bienvenus</span></div>
+    </div>
+    <div class="pratique-item">
+      <div class="pratique-icon">FAMILLES</div>
+      <div class="pratique-label">Bienvenues<br><span style="color:var(--texte2); font-size:11px">dès 6 ans selon expérience</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <h3>LUMIIA</h3>
+      <p>Lieu d'expériences immersives</p>
+      <p style="color: var(--texte2); font-size: 13px; margin-top: 16px;">12 rue de la République, 26400 Aouste-sur-Sye<br>04 75 00 00 00 · contact@lumiia.fr</p>
+      <div class="footer-langs">
+        <span class="active">FR</span>
+        <span>EN</span>
+        <span>NL</span>
+        <span>DE</span>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Découvrir</h4>
+      <ul>
+        <li><a href="/spectacle">Le spectacle</a></li>
+        <li><a href="/experiences">Les expériences</a></li>
+        <li><a href="/bar">Le bar</a></li>
+        <li><a href="/atelier">L'atelier</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Réserver</h4>
+      <ul>
+        <li><a href="#">Une session de spectacle</a></li>
+        <li><a href="#">Une expérience</a></li>
+        <li><a href="#">Une table</a></li>
+        <li><a href="/groupes">Un événement de groupe</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Pratique</h4>
+      <ul>
+        <li><a href="/infos">Horaires & accès</a></li>
+        <li><a href="/agenda">Agenda</a></li>
+        <li><a href="#">Newsletter</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div>© 2026 I-IMMERSION SAS · lumiia.fr</div>
+    <div>Mockup home v1 · multi-pages été 2026</div>
+  </div>
+</footer>
+
+<div class="mockup-note">Mockup v1 — pour validation</div>
+
+</body>
+</html>

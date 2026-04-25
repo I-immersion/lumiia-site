@@ -1,0 +1,192 @@
+{
+  "banner": {
+    "tag": "Été 2026",
+    "item1": "Spectacle inaugural",
+    "item2": "Combos famille",
+    "item3": "Bar climatisé"
+  },
+  "nav": {
+    "spectacle": "Spectacle",
+    "experiences": "Expériences",
+    "bar": "Bar",
+    "groupes": "Groupes",
+    "agenda": "Agenda",
+    "infos": "Infos",
+    "atelier": "L'atelier",
+    "escapade": "Escapade week-end"
+  },
+  "cta": {
+    "reserver": "Réserver",
+    "spectacle": "Le spectacle",
+    "experience": "Une expérience",
+    "table": "Une table au bar",
+    "groupe": "Un événement de groupe"
+  },
+  "home": {
+    "hero": {
+      "loc": "Aouste-sur-Sye · Drôme · Vallée de la Drôme",
+      "title": "Lieu d'expériences immersives",
+      "title_em": "immersives",
+      "sub": "Bar, jeux, spectacles. Trois univers fabriqués sur place — à vivre seul, en famille ou en groupe, le temps d'une soirée ou d'un week-end."
+    },
+    "resa": {
+      "label": "Que voulez-vous faire ?",
+      "spectacle_title": "Spectacle",
+      "spectacle_sub": "Réserver une session",
+      "experience_title": "Expérience",
+      "experience_sub": "Choisir un jeu",
+      "table_title": "Bar",
+      "table_sub": "Boire un verre"
+    },
+    "univers": {
+      "kicker": "Trois univers, un seul lieu",
+      "title": "Choisissez votre porte d'entrée",
+      "title_em": "porte d'entrée",
+      "intro": "Chaque univers a sa propre ambiance, ses propres horaires, son propre rythme. Vous pouvez en vivre un seul — ou les enchaîner sur une même soirée.",
+      "spectacle_tag": "Saison été 2026",
+      "spectacle_title": "Le spectacle",
+      "spectacle_desc": "Une aventure immersive — décors numériques, personnages animés, énigmes collectives. Pour 50 à 100 personnes, plusieurs sessions par semaine.",
+      "spectacle_link": "Découvrir & réserver",
+      "experiences_tag": "À la carte",
+      "experiences_title": "Les expériences",
+      "experiences_desc": "Défoule Room, Hollywood Super Green, Karaoké privé, Enigmatic Game. Des jeux à vivre en groupe ou en famille, dès 30 minutes.",
+      "experiences_link": "Voir les expériences",
+      "bar_tag": "18h — minuit",
+      "bar_title": "Le bar immersif",
+      "bar_desc": "Cabinet de curiosités vivant. Sculpture mappée 5m, cocktails maison, finger food. Climatisé. La pause idéale après une journée dehors.",
+      "bar_link": "L'ambiance du bar"
+    },
+    "profils": {
+      "kicker": "Vous venez avec qui ?",
+      "title": "On vous a préparé trois entrées",
+      "title_em": "trois entrées",
+      "famille_kicker": "01 — En vacances",
+      "famille_title": "En famille, en camping dans la Drôme",
+      "famille_desc": "Activités enfants, spectacle familial, bar climatisé. Plusieurs visites possibles sur votre séjour, à des moments différents.",
+      "famille_link": "Voir l'offre famille",
+      "potes_kicker": "02 — Escapade week-end",
+      "potes_title": "Avec des potes, à moins d'une heure",
+      "potes_desc": "LUMIIA + canoë sur la Drôme, tour de Crest, gîte partenaire. Composez votre week-end, restez la nuit, profitez sans rentrer.",
+      "potes_link": "Composer un week-end",
+      "evt_kicker": "03 — Événement",
+      "evt_title": "Anniv, EVG / EVJF, team building",
+      "evt_desc": "Packs clés en main pour groupes de 10 à 50 personnes. Privatisation possible. Brochure téléchargeable.",
+      "evt_link": "Voir les packs"
+    },
+    "compose": {
+      "kicker": "Combos · Tout est packagé",
+      "title": "Composez votre soirée — ou votre week-end complet",
+      "title_em": "week-end complet",
+      "intro": "On a préparé les combinaisons qui marchent. Une activité plus un apéro, un spectacle plus un verre, ou un week-end entier dans la vallée. Réservation en un clic.",
+      "soiree_tag": "Soirée chez LUMIIA",
+      "soiree_title": "Le spectacle, plus un verre",
+      "soiree_item1": "1 session de spectacle",
+      "soiree_item2": "1 cocktail ou softs au bar",
+      "soiree_item3": "Accès libre à l'ambiance bar",
+      "soiree_price": "à partir de 32€",
+      "soiree_duration": "2h · dès 18h",
+      "soiree_cta": "Réserver ce combo",
+      "demi_tag": "Demi-journée famille",
+      "demi_title": "Une expérience, un apéro",
+      "demi_item1": "1 expérience au choix (30–45 min)",
+      "demi_item2": "Apéro tapas pour la famille",
+      "demi_item3": "Avant ou après le dîner",
+      "demi_price": "à partir de 24€/pers",
+      "demi_duration": "1h30 · 18h–20h",
+      "demi_cta": "Réserver ce combo",
+      "wknd_tag": "Week-end Drôme",
+      "wknd_title": "LUMIIA + canoë + nuit en gîte",
+      "wknd_item1": "Canoë sur la Drôme (partenaire)",
+      "wknd_item2": "Spectacle ou expérience LUMIIA",
+      "wknd_item3": "Soirée au bar",
+      "wknd_item4": "Nuit en gîte partenaire",
+      "wknd_price": "sur devis",
+      "wknd_duration": "2 jours · 4 à 8 pers",
+      "wknd_cta": "Demander un devis"
+    },
+    "etage": {
+      "tag": "Bientôt — 560 m²",
+      "title": "Un étage entier d'expériences, en préparation",
+      "desc": "Salle de spectacle 100 places, roller disco, laser game, escape game, quiz room, bar/snack ouvert dès 15h. Ouverture progressive — on vous préviendra dès que les premières activités sont accessibles."
+    },
+    "pratique": {
+      "kicker": "Bon à savoir",
+      "title": "L'essentiel",
+      "horaires_label": "Jeu — Dim",
+      "horaires_value": "18h — minuit",
+      "horaires_note": "vacances : 15h+",
+      "parking_label": "Parking",
+      "parking_value": "Gratuit · 50 places",
+      "parking_note": "à 100m",
+      "lang_label": "FR · EN · NL",
+      "lang_value": "Équipe multilingue",
+      "lang_note": "all summer long",
+      "paiement_label": "CB · Espèces",
+      "paiement_value": "Tous moyens",
+      "paiement_note": "ANCV bienvenus",
+      "famille_label": "Familles",
+      "famille_value": "Bienvenues",
+      "famille_note": "dès 6 ans selon expérience"
+    }
+  },
+  "spectacle": {
+    "hero": {
+      "tag": "Saison Été 2026 · Inaugural",
+      "title": "Le grand spectacle",
+      "title_em": "immersif",
+      "sub": "Une aventure de lumière et de sons, entièrement fabriquée dans nos studios. Vous ne regardez pas le spectacle — vous y entrez."
+    },
+    "format": {
+      "kicker": "Le format",
+      "title": "Comment ça se passe",
+      "duree_label": "Durée",
+      "duree_value": "Environ 1h",
+      "jauge_label": "Jauge",
+      "jauge_value": "50 à 100 personnes",
+      "age_label": "À partir de",
+      "age_value": "6 ans · familial",
+      "sessions_label": "Sessions",
+      "sessions_value": "Plusieurs par semaine, sur réservation"
+    },
+    "concept": {
+      "kicker": "Le concept",
+      "title": "Une histoire qu'on traverse ensemble",
+      "intro": "Pas un spectacle qu'on regarde assis. Un univers qu'on parcourt — décors numériques projetés, personnages animés, énigmes que le groupe résout ensemble. Une narration qui vous emmène d'un espace à un autre.",
+      "p1": "Conçu et fabriqué dans nos studios LUMIIA. Pas une franchise, pas un concept importé. Chaque scène, chaque effet sonore, chaque surprise est née ici.",
+      "p2": "Pour cet été inaugural, le spectacle s'adresse aux familles, aux groupes en vacances, aux scolaires hors période. Un format pensé pour qu'enfants et adultes y trouvent leur compte ensemble."
+    },
+    "pourqui": {
+      "kicker": "Pour qui",
+      "title": "Trois publics",
+      "famille_title": "Familles en vacances",
+      "famille_desc": "Pour les enfants de 6 ans et plus. Les parents y trouvent leur compte autant que les enfants.",
+      "groupes_title": "Groupes d'amis",
+      "groupes_desc": "Plus on est nombreux, plus on rit. Idéal en escapade week-end avant la soirée au bar.",
+      "scolaires_title": "Sorties scolaires",
+      "scolaires_desc": "Hors saison, créneaux dédiés aux groupes scolaires. Pédagogique et fun. Sur demande."
+    },
+    "resa": {
+      "kicker": "Réservation",
+      "title": "Sessions ouvertes selon la demande",
+      "intro": "Pas d'horaires fixes — les créneaux s'ouvrent en fonction des réservations en cours. Plus vous réservez tôt, plus vous avez de choix.",
+      "iframe_placeholder": "Module de réservation Nico — à intégrer ici",
+      "fallback_text": "Réservation en cours d'intégration. En attendant, contactez-nous directement :",
+      "contact_btn": "Réserver par téléphone"
+    }
+  },
+  "stub": {
+    "title": "Page en construction",
+    "intro": "Cette page fait partie du chantier multi-pages en cours (v2.9). Elle sera complète prochainement.",
+    "back": "Retour à l'accueil"
+  },
+  "footer": {
+    "tagline": "Lieu d'expériences immersives",
+    "address": "12 rue de la République, 26400 Aouste-sur-Sye",
+    "discover": "Découvrir",
+    "book": "Réserver",
+    "practical": "Pratique",
+    "hours": "Horaires & accès",
+    "contact": "Contact",
+    "version": "v2.9.0 · multi-pages été 2026"
+  }
+}
