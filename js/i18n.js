@@ -4,7 +4,7 @@
    ═══════════════════════════════════════════════════════════ */
 
 (function () {
-  const BASE = '/lumiia-site';
+  const BASE = '';
   const SUPPORTED = ['fr', 'en', 'nl', 'de'];
   const DEFAULT_LANG = 'fr';
   const STORAGE_KEY = 'lumiia.lang';

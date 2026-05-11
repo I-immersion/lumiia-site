@@ -5,7 +5,7 @@
 
 (function () {
   // Base path — change ici quand on migre de GitHub Pages vers lumiia.fr
-  const BASE = '/lumiia-site';
+  const BASE = '';
 
   async function loadPartial(slot, file) {
     const target = document.querySelector(slot);
@@ -25,7 +25,7 @@
     const path = window.location.pathname;
     document.querySelectorAll('[data-nav]').forEach((link) => {
       const navKey = link.getAttribute('data-nav');
-      // Matches /lumiia-site/spectacle, /spectacle, etc.
+      // Matches /spectacle, /spectacle, etc.
       const isActive = path === '/' + navKey || path.includes(`/${navKey}/`) || path.includes(`/${navKey}.html`);
       if (isActive) link.classList.add('is-active');
     });
